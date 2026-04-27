@@ -6,14 +6,14 @@ const files = fs.readdirSync(dir).filter(f => /\.jpe?g$/i.test(f));
 
 // Image labels
 const labels = [
-  { title: '学历证书', desc: '学历证明材料' },
-  { title: '学位证书', desc: '学位证明材料' },
-  { title: '身份证正面', desc: '身份证明文件' },
-  { title: '个人证件照', desc: '个人证件照片' },
-  { title: '荣誉证书', desc: '获奖证明材料' },
-  { title: '工作证明', desc: '工作经历证明' },
-  { title: '技能证书', desc: '专业技能证明' },
-  { title: '其他材料', desc: '补充证明材料' },
+  { title: '2024-2025', desc: '“三好学生”证书' },
+  { title: '2024-2025', desc: '“校二等优秀奖学金”证书' },
+  { title: '四级', desc: '成绩报告单' },
+  { title: '2025年9月岳麓山桔子洲', desc: '“优秀志愿者”证书' },
+  { title: '2024年12月', desc: '“国家励志奖学金”证书' },
+  { title: '2025年9月', desc: '“市级优秀志愿者”证书' },
+  { title: '技能证书', desc: 'C2驾驶证证明' },
+  { title: '其他材料', desc: '志愿时长补充证明材料' },
 ];
 
 // Generate image cards
