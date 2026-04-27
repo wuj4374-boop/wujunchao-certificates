@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欢迎来到吴俊超的材料证明小屋</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --primary: #8B4513;
+  --primary-light: #D2691E;
+  --gold: #D4A853;
+  --gold-light: #F5E6C8;
+  --bg: #FFF8F0;
+  --card-bg: #FFFFFF;
+  --text: #3C2415;
+  --text-light: #7A5A3E;
+  --shadow: rgba(139, 69, 19, 0.15);
+}
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+body.loaded { opacity: 1; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--gold-light); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 40%, #D4A853 100%);
+  padding: 60px 20px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #FFF;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  margin-bottom: 12px;
+  letter-spacing: 4px;
+  position: relative;
+}
+
+header .subtitle {
+  color: var(--gold-light);
+  font-size: 1.1em;
+  letter-spacing: 6px;
+  position: relative;
+}
+
+header .header-decoration {
+  width: 80px;
+  height: 3px;
+  background: var(--gold);
+  margin: 20px auto;
+  border-radius: 2px;
+  position: relative;
+}
+
+/* Loading animation */
+.loading-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--primary-light), var(--gold));
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  z-index: 10000;
+  transition: width 0.3s ease;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Main content */
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-intro h2 {
+  font-size: 1.6em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.section-intro p {
+  color: var(--text-light);
+  font-size: 1em;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.gallery-item {
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.gallery-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(139, 69, 19, 0.25);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  overflow: hidden;
+  background: #f5f0eb;
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .image-wrapper img {
+  transform: scale(1.08);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(60, 36, 21, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-icon {
+  font-size: 2em;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.image-info {
+  padding: 18px 20px;
+}
+
+.image-info h3 {
+  font-size: 1.1em;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.image-info p {
+  font-size: 0.85em;
+  color: var(--text-light);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: lightboxIn 0.3s ease;
+}
+
+@keyframes lightboxIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  background: none;
+  border: none;
+  font-family: inherit;
+  z-index: 10;
+}
+
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  background: none;
+  border: none;
+  padding: 20px;
+  font-family: inherit;
+  z-index: 10;
+}
+
+.lightbox-nav:hover { opacity: 1; }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 0.9em;
+  opacity: 0.8;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 16px;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
+  font-size: 0.85em;
+  border-top: 1px solid var(--gold-light);
+  margin-top: 20px;
+}
+
+.footer-decoration {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 15px;
+  border-radius: 1px;
+}
+
+/* Particle decorations */
+.particle {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.08;
+  font-size: 20px;
+  animation: float 20s infinite linear;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.08; }
+  90% { opacity: 0.08; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6em; letter-spacing: 2px; }
+  header .subtitle { font-size: 0.9em; letter-spacing: 3px; }
+  header { padding: 40px 15px 35px; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+  main { padding: 30px 15px; }
+  .lightbox-nav { font-size: 30px; }
+  .lightbox-prev { left: 10px; }
+  .lightbox-next { right: 10px; }
+}
+
+@media (max-width: 480px) {
+  header h1 { font-size: 1.3em; }
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="loading-bar" id="loadingBar" style="width:0%"></div>
+
+<!-- Floating particles -->
+<div class="particle" style="left:5%;animation-delay:0s;">✦</div>
+<div class="particle" style="left:15%;animation-delay:3s;">✧</div>
+<div class="particle" style="left:25%;animation-delay:6s;">✦</div>
+<div class="particle" style="left:40%;animation-delay:2s;">✧</div>
+<div class="particle" style="left:55%;animation-delay:8s;">✦</div>
+<div class="particle" style="left:70%;animation-delay:4s;">✧</div>
+<div class="particle" style="left:85%;animation-delay:7s;">✦</div>
+<div class="particle" style="left:95%;animation-delay:1s;">✧</div>
+
+<header>
+  <h1>🏠 欢迎来到吴俊超的材料证明小屋</h1>
+  <div class="header-decoration"></div>
+  <p class="subtitle">— 诚信 · 真实 · 可靠 —</p>
+</header>
+
+<main>
+  <div class="section-intro">
+    <h2>📋 个人证明材料总览</h2>
+    <p>共 8 份材料 &nbsp;·&nbsp; 点击图片查看高清大图</p>
+  </div>
+  <div class="gallery-grid">
+    
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="1193a5b8a266cd8c96aeae2e65bff04d.jpg" alt="学历证书" loading="lazy" onclick="openLightbox(0)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>学历证书</h3>
+        <p>学历证明材料</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="6a27b51c157f8b76ea7c345851a469e9.jpg" alt="学位证书" loading="lazy" onclick="openLightbox(1)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>学位证书</h3>
+        <p>学位证明材料</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="79929705e2ef2f1fce52f1b5df6b795a.jpeg" alt="身份证正面" loading="lazy" onclick="openLightbox(2)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>身份证正面</h3>
+        <p>身份证明文件</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="ac01b796f6519456877d7b23ad661da1.jpeg" alt="个人证件照" loading="lazy" onclick="openLightbox(3)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>个人证件照</h3>
+        <p>个人证件照片</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="d02f06f4addbf39bde3a223cc59a75d0.jpg" alt="荣誉证书" loading="lazy" onclick="openLightbox(4)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>荣誉证书</h3>
+        <p>获奖证明材料</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="d980ad57474db3089f01ea93fc0b8c41.jpeg" alt="工作证明" loading="lazy" onclick="openLightbox(5)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>工作证明</h3>
+        <p>工作经历证明</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="db1efb703e8ae6d64e4c2875b88165dc.jpeg" alt="技能证书" loading="lazy" onclick="openLightbox(6)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>技能证书</h3>
+        <p>专业技能证明</p>
+      </div>
+    </div>
+
+    <div class="gallery-item">
+      <div class="image-wrapper">
+        <img src="f9d15baf3b11c1e6b17efbd02a0b24e8.jpg" alt="其他材料" loading="lazy" onclick="openLightbox(7)">
+        <div class="image-overlay">
+          <span class="overlay-icon">🔍</span>
+        </div>
+      </div>
+      <div class="image-info">
+        <h3>其他材料</h3>
+        <p>补充证明材料</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-decoration"></div>
+  <p>© 2026 吴俊超 &mdash; 材料证明小屋 | 所有材料真实有效</p>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+  <img class="lightbox-content" id="lightbox-img" alt="">
+  <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<script>
+const images = [
+  "1193a5b8a266cd8c96aeae2e65bff04d.jpg",
+"6a27b51c157f8b76ea7c345851a469e9.jpg",
+"79929705e2ef2f1fce52f1b5df6b795a.jpeg",
+"ac01b796f6519456877d7b23ad661da1.jpeg",
+"d02f06f4addbf39bde3a223cc59a75d0.jpg",
+"d980ad57474db3089f01ea93fc0b8c41.jpeg",
+"db1efb703e8ae6d64e4c2875b88165dc.jpeg",
+"f9d15baf3b11c1e6b17efbd02a0b24e8.jpg"
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  img.src = images[currentIndex];
+  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + images.length;
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function changeImage(dir) {
+  currentIndex = (currentIndex + dir + images.length) % images.length;
+  const img = document.getElementById('lightbox-img');
+  img.src = images[currentIndex];
+  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + images.length;
+}
+
+document.addEventListener('keydown', function(e) {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') changeImage(-1);
+  if (e.key === 'ArrowRight') changeImage(1);
+});
+
+// Loading bar and scroll animations
+window.addEventListener('load', function() {
+  document.body.classList.add('loaded');
+  const bar = document.getElementById('loadingBar');
+  bar.style.width = '100%';
+  setTimeout(() => { bar.style.opacity = '0'; }, 500);
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.gallery-item').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
