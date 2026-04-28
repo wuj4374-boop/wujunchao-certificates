@@ -327,7 +327,139 @@ footer {
   100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
+/* Skills Section */
+.skills-section {
+  margin-top: 80px;
+  padding-top: 50px;
+  border-top: 2px solid var(--gold-light);
+}
+
+.skills-intro {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.skills-intro h2 {
+  font-size: 1.8em;
+  color: var(--primary);
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+}
+
+.skills-intro .skills-subtitle {
+  color: var(--text-light);
+  font-size: 0.95em;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.skill-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.skill-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  box-shadow: 0 12px 40px rgba(139, 69, 19, 0.25);
+}
+
+.skill-header {
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+  color: #fff;
+  padding: 18px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.skill-count {
+  display: block;
+  font-size: 0.65em;
+  font-weight: normal;
+  opacity: 0.8;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.skill-file-list {
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.skill-file-list a {
+  display: block;
+  padding: 7px 20px 7px 38px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85em;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skill-file-list a::before {
+  content: "\01F4C4";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+}
+
+.skill-file-list a:hover {
+  background: var(--gold-light);
+  color: var(--primary);
+}
+
+.folder-label {
+  display: block;
+  padding: 14px 20px 4px 16px;
+  font-size: 0.8em;
+  color: var(--primary-light);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.folder-label:first-child {
+  padding-top: 4px;
+}
+
+.folder-label::before {
+  content: "\01F4C1";
+  margin-right: 4px;
+}
+
+.skill-file-list::-webkit-scrollbar { width: 6px; }
+.skill-file-list::-webkit-scrollbar-track { background: var(--gold-light); border-radius: 3px; }
+.skill-file-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+.skill-file-list::-webkit-scrollbar-thumb:hover { background: var(--primary-light); }
+
 /* Responsive */
+@media (max-width: 900px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .skill-file-list { max-height: 350px; }
+}
+
 @media (max-width: 768px) {
   header h1 { font-size: 1.6em; letter-spacing: 2px; }
   header .subtitle { font-size: 0.9em; letter-spacing: 3px; }
@@ -477,6 +609,273 @@ footer {
       </div>
     </div>
   </div>
+
+  <!-- Skills Section -->
+  <section class="skills-section">
+    <div class="skills-intro">
+      <h2>小小技能展示</h2>
+      <p class="skills-subtitle">只是放置了一点点小草稿，很多文件都丢失了，您将就着看</p>
+    </div>
+    <div class="skills-grid">
+
+      <!-- AutoCAD -->
+      <div class="skill-card">
+        <div class="skill-header">
+          AutoCAD
+          <span class="skill-count">共 13 个文件</span>
+        </div>
+        <div class="skill-file-list">
+          <a href="AutoCAD/Drawin0.dwg" download>Drawin0.dwg</a>
+          <a href="AutoCAD/Drawing1.dwg" download>Drawing1.dwg</a>
+          <a href="AutoCAD/Drawing2.dwg" download>Drawing2.dwg</a>
+          <a href="AutoCAD/Drawing4.dwg" download>Drawing4.dwg</a>
+          <a href="AutoCAD/Drawing5.dwg" download>Drawing5.dwg</a>
+          <a href="AutoCAD/Drawing6.dwg" download>Drawing6.dwg</a>
+          <a href="AutoCAD/Drawing7.dwg" download>Drawing7.dwg</a>
+          <a href="AutoCAD/Drawing8.dwg" download>Drawing8.dwg</a>
+          <a href="AutoCAD/Drawing9.dwg" download>Drawing9.dwg</a>
+          <a href="AutoCAD/Drawingmax.dwg" download>Drawingmax.dwg</a>
+          <a href="AutoCAD/Drawingmin.dwg" download>Drawingmin.dwg</a>
+          <a href="AutoCAD/零件1-吴俊超.DWG" download>零件1-吴俊超.DWG</a>
+          <a href="AutoCAD/零件4.DWG" download>零件4.DWG</a>
+        </div>
+      </div>
+
+      <!-- CATIA -->
+      <div class="skill-card">
+        <div class="skill-header">
+          CATIA
+          <span class="skill-count">共 23 个文件</span>
+        </div>
+        <div class="skill-file-list">
+          <a href="CATIA/3-8.CATPart" download>3-8.CATPart</a>
+          <a href="CATIA/37.CATPart" download>37.CATPart</a>
+          <a href="CATIA/41.CATPart" download>41.CATPart</a>
+          <a href="CATIA/CX.CATPart" download>CX.CATPart</a>
+          <a href="CATIA/Part007.CATPart" download>Part007.CATPart</a>
+          <a href="CATIA/Part010.CATPart" download>Part010.CATPart</a>
+          <a href="CATIA/Part1.CATPart" download>Part1.CATPart</a>
+          <a href="CATIA/Part100.CATPart" download>Part100.CATPart</a>
+          <a href="CATIA/Part108.CATPart" download>Part108.CATPart</a>
+          <a href="CATIA/Part2.CATPart" download>Part2.CATPart</a>
+          <a href="CATIA/Part3.CATPart" download>Part3.CATPart</a>
+          <a href="CATIA/Part37.CATPart" download>Part37.CATPart</a>
+          <a href="CATIA/Part38.CATPart" download>Part38.CATPart</a>
+          <a href="CATIA/Part4.CATPart" download>Part4.CATPart</a>
+          <a href="CATIA/Part40.CATPart" download>Part40.CATPart</a>
+          <a href="CATIA/Part41.CATPart" download>Part41.CATPart</a>
+          <a href="CATIA/Part42.CATPart" download>Part42.CATPart</a>
+          <a href="CATIA/Part5daojiao.CATPart" download>Part5daojiao.CATPart</a>
+          <a href="CATIA/Part6lei.CATPart" download>Part6lei.CATPart</a>
+          <a href="CATIA/Part80.CATPart" download>Part80.CATPart</a>
+          <a href="CATIA/PartFangXingPan.CATPart" download>PartFangXingPan.CATPart</a>
+          <a href="CATIA/PartQiangTi.CATPart" download>PartQiangTi.CATPart</a>
+          <a href="CATIA/Partxiankuan.CATPart" download>Partxiankuan.CATPart</a>
+        </div>
+      </div>
+
+      <!-- Solidworks -->
+      <div class="skill-card">
+        <div class="skill-header">
+          Solidworks
+          <span class="skill-count">共 100+ 个文件</span>
+        </div>
+        <div class="skill-file-list">
+          <div class="folder-label">根目录</div>
+          <a href="Solidworks/123.SLDPRT" download>123.SLDPRT</a>
+          <a href="Solidworks/m8螺栓.SLDPRT" download>m8螺栓.SLDPRT</a>
+          <a href="Solidworks/上课内容-吴俊超.SLDPRT" download>上课内容-吴俊超.SLDPRT</a>
+          <a href="Solidworks/丝杠-吴俊超.SLDPRT" download>丝杠-吴俊超.SLDPRT</a>
+          <a href="Solidworks/主动轮-吴俊超.SLDPRT" download>主动轮-吴俊超.SLDPRT</a>
+          <a href="Solidworks/传动带-吴俊超.SLDASM" download>传动带-吴俊超.SLDASM</a>
+          <a href="Solidworks/传动带-吴俊超.SLDPRT" download>传动带-吴俊超.SLDPRT</a>
+          <a href="Solidworks/传送带轮廓-吴俊超.SLDPRT" download>传送带轮廓-吴俊超.SLDPRT</a>
+          <a href="Solidworks/低速轴组件-吴俊超.SLDASM" download>低速轴组件-吴俊超.SLDASM</a>
+          <a href="Solidworks/六棱柱-吴俊超.SLDPRT" download>六棱柱-吴俊超.SLDPRT</a>
+          <a href="Solidworks/半成品-吴俊超.SLDPRT" download>半成品-吴俊超.SLDPRT</a>
+          <a href="Solidworks/叉架类模型-吴俊超.SLDPRT" download>叉架类模型-吴俊超.SLDPRT</a>
+          <a href="Solidworks/圆柱销-吴俊超.SLDPRT" download>圆柱销-吴俊超.SLDPRT</a>
+          <a href="Solidworks/圆锥销-吴俊超.SLDPRT" download>圆锥销-吴俊超.SLDPRT</a>
+          <a href="Solidworks/垫圈-吴俊超.SLDPRT" download>垫圈-吴俊超.SLDPRT</a>
+          <a href="Solidworks/塞子.SLDPRT" download>塞子.SLDPRT</a>
+          <a href="Solidworks/填料压盖.SLDPRT" download>填料压盖.SLDPRT</a>
+          <a href="Solidworks/壳体.SLDPRT" download>壳体.SLDPRT</a>
+          <a href="Solidworks/实验模型-吴俊超.SLDPRT" download>实验模型-吴俊超.SLDPRT</a>
+          <a href="Solidworks/工程图1-吴俊超.SLDDRW" download>工程图1-吴俊超.SLDDRW</a>
+          <a href="Solidworks/带轮-吴俊超.SLDPRT" download>带轮-吴俊超.SLDPRT</a>
+          <a href="Solidworks/弹簧(1)-吴俊超.SLDPRT" download>弹簧(1)-吴俊超.SLDPRT</a>
+          <a href="Solidworks/手把.SLDPRT" download>手把.SLDPRT</a>
+          <a href="Solidworks/手盘-吴俊超.SLDPRT" download>手盘-吴俊超.SLDPRT</a>
+          <a href="Solidworks/扣子-吴俊超.SLDPRT" download>扣子-吴俊超.SLDPRT</a>
+          <a href="Solidworks/拉伸弹簧-吴俊超.SLDPRT" download>拉伸弹簧-吴俊超.SLDPRT</a>
+          <a href="Solidworks/拨叉-吴俊超.SLDPRT" download>拨叉-吴俊超.SLDPRT</a>
+          <a href="Solidworks/摇臂建模-吴俊超.SLDPRT" download>摇臂建模-吴俊超.SLDPRT</a>
+          <a href="Solidworks/支架建模-吴俊超.SLDPRT" download>支架建模-吴俊超.SLDPRT</a>
+          <a href="Solidworks/斜齿轮-吴俊超.SLDPRT" download>斜齿轮-吴俊超.SLDPRT</a>
+          <a href="Solidworks/普通平键-吴俊超.SLDPRT" download>普通平键-吴俊超.SLDPRT</a>
+          <a href="Solidworks/曲柄.SLDPRT" download>曲柄.SLDPRT</a>
+          <a href="Solidworks/曲面相贯2-吴俊超.SLDPRT" download>曲面相贯2-吴俊超.SLDPRT</a>
+          <a href="Solidworks/机架.SLDPRT" download>机架.SLDPRT</a>
+          <a href="Solidworks/杠铃-吴俊超.SLDDRW" download>杠铃-吴俊超.SLDDRW</a>
+          <a href="Solidworks/杠铃杆-吴俊超.SLDPRT" download>杠铃杆-吴俊超.SLDPRT</a>
+          <a href="Solidworks/杠铃片-吴俊超.SLDPRT" download>杠铃片-吴俊超.SLDPRT</a>
+          <a href="Solidworks/柱塞套-吴俊超.SLDPRT" download>柱塞套-吴俊超.SLDPRT</a>
+          <a href="Solidworks/案例草图-吴俊超.SLDPRT" download>案例草图-吴俊超.SLDPRT</a>
+          <a href="Solidworks/法兰盘1-吴俊超.SLDDRW" download>法兰盘1-吴俊超.SLDDRW</a>
+          <a href="Solidworks/法兰盘1-吴俊超.SLDPRT" download>法兰盘1-吴俊超.SLDPRT</a>
+          <a href="Solidworks/滑块.SLDPRT" download>滑块.SLDPRT</a>
+          <a href="Solidworks/瓶子-吴俊超.SLDPRT" download>瓶子-吴俊超.SLDPRT</a>
+          <a href="Solidworks/短轴-吴俊超.SLDPRT" download>短轴-吴俊超.SLDPRT</a>
+          <a href="Solidworks/端盖-吴俊超.SLDPRT" download>端盖-吴俊超.SLDPRT</a>
+          <a href="Solidworks/筋-吴俊超.SLDPRT" download>筋-吴俊超.SLDPRT</a>
+          <a href="Solidworks/练习1-吴俊超.SLDPRT" download>练习1-吴俊超.SLDPRT</a>
+          <a href="Solidworks/练习2-吴俊超.SLDPRT" download>练习2-吴俊超.SLDPRT</a>
+          <a href="Solidworks/练习3-吴俊超.SLDPRT" download>练习3-吴俊超.SLDPRT</a>
+          <a href="Solidworks/练习4-吴俊超.SLDPRT" download>练习4-吴俊超.SLDPRT</a>
+          <a href="Solidworks/考试11-吴俊超.SLDPRT" download>考试11-吴俊超.SLDPRT</a>
+          <a href="Solidworks/考试111-吴俊超.SLDPRT" download>考试111-吴俊超.SLDPRT</a>
+          <a href="Solidworks/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
+          <a href="Solidworks/考试2-吴俊超.SLDPRT" download>考试2-吴俊超.SLDPRT</a>
+          <a href="Solidworks/考试22-吴俊超.SLDPRT" download>考试22-吴俊超.SLDPRT</a>
+          <a href="Solidworks/胡乱建模2-吴俊超.SLDPRT" download>胡乱建模2-吴俊超.SLDPRT</a>
+          <a href="Solidworks/胡乱构造-吴俊超.SLDPRT" download>胡乱构造-吴俊超.SLDPRT</a>
+          <a href="Solidworks/茶壶-吴俊超.SLDPRT" download>茶壶-吴俊超.SLDPRT</a>
+          <a href="Solidworks/草图-吴俊超.SLDPRT" download>草图-吴俊超.SLDPRT</a>
+          <a href="Solidworks/螺栓联结-吴俊超.SLDASM" download>螺栓联结-吴俊超.SLDASM</a>
+          <a href="Solidworks/螺栓联结-吴俊超.SLDDRW" download>螺栓联结-吴俊超.SLDDRW</a>
+          <a href="Solidworks/螺栓联结-吴俊超1.SLDDRW" download>螺栓联结-吴俊超1.SLDDRW</a>
+          <a href="Solidworks/螺纹连接件-吴俊超.SLDPRT" download>螺纹连接件-吴俊超.SLDPRT</a>
+          <a href="Solidworks/螺纹连接件（半成品）-吴俊超.SLDPRT" download>螺纹连接件（半成品）-吴俊超.SLDPRT</a>
+          <a href="Solidworks/螺钉-吴俊超.SLDPRT" download>螺钉-吴俊超.SLDPRT</a>
+          <a href="Solidworks/被动轮-吴俊超.SLDASM" download>被动轮-吴俊超.SLDASM</a>
+          <a href="Solidworks/装配体1.....SLDASM" download>装配体1.....SLDASM</a>
+          <a href="Solidworks/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
+          <a href="Solidworks/装配体6-吴俊超.SLDASM" download>装配体6-吴俊超.SLDASM</a>
+          <a href="Solidworks/装配体6-吴俊超.SLDDRW" download>装配体6-吴俊超.SLDDRW</a>
+          <a href="Solidworks/课堂案例-吴俊超.SLDPRT" download>课堂案例-吴俊超.SLDPRT</a>
+          <a href="Solidworks/课堂案例1-吴俊超.SLDASM" download>课堂案例1-吴俊超.SLDASM</a>
+          <a href="Solidworks/车辆零件-吴俊超.SLDPRT" download>车辆零件-吴俊超.SLDPRT</a>
+          <a href="Solidworks/连接法兰盘-吴俊超.SLDPRT" download>连接法兰盘-吴俊超.SLDPRT</a>
+          <a href="Solidworks/连杆.SLDPRT" download>连杆.SLDPRT</a>
+          <a href="Solidworks/连杆建模-吴俊超.SLDPRT" download>连杆建模-吴俊超.SLDPRT</a>
+          <a href="Solidworks/零件-吴俊超.SLDPRT" download>零件-吴俊超.SLDPRT</a>
+          <a href="Solidworks/零件0.SLDPRT" download>零件0.SLDPRT</a>
+          <a href="Solidworks/零件1-吴俊超.SLDDRW" download>零件1-吴俊超.SLDDRW</a>
+          <a href="Solidworks/零件1-吴俊超.SLDPRT" download>零件1-吴俊超.SLDPRT</a>
+          <a href="Solidworks/零件2.SLDPRT" download>零件2.SLDPRT</a>
+          <a href="Solidworks/零件3.SLDPRT" download>零件3.SLDPRT</a>
+          <a href="Solidworks/零件31.SLDPRT" download>零件31.SLDPRT</a>
+          <a href="Solidworks/零件32.SLDPRT" download>零件32.SLDPRT</a>
+          <a href="Solidworks/零件4.SLDPRT" download>零件4.SLDPRT</a>
+          <a href="Solidworks/零件4shouji.SLDPRT" download>零件4shouji.SLDPRT</a>
+          <a href="Solidworks/零件4shouji1.SLDPRT" download>零件4shouji1.SLDPRT</a>
+          <a href="Solidworks/零件5.SLDPRT" download>零件5.SLDPRT</a>
+          <a href="Solidworks/零件6.SLDDRW" download>零件6.SLDDRW</a>
+          <a href="Solidworks/零件6.SLDPRT" download>零件6.SLDPRT</a>
+          <a href="Solidworks/零件7.SLDPRT" download>零件7.SLDPRT</a>
+          <a href="Solidworks/零件8.SLDPRT" download>零件8.SLDPRT</a>
+          <a href="Solidworks/齿轮-吴俊超.SLDPRT" download>齿轮-吴俊超.SLDPRT</a>
+          <a href="Solidworks/齿轮2-吴俊超.SLDPRT" download>齿轮2-吴俊超.SLDPRT</a>
+
+          <div class="folder-label">减速器</div>
+          <a href="Solidworks/减速器/上箱盖.SLDPRT" download>上箱盖.SLDPRT</a>
+          <a href="Solidworks/减速器/下箱体.SLDPRT" download>下箱体.SLDPRT</a>
+          <a href="Solidworks/减速器/减速器装配-吴俊超.SLDASM" download>减速器装配-吴俊超.SLDASM</a>
+          <a href="Solidworks/减速器/大垫片.SLDPRT" download>大垫片.SLDPRT</a>
+          <a href="Solidworks/减速器/大端盖.SLDPRT" download>大端盖.SLDPRT</a>
+          <a href="Solidworks/减速器/大通盖.SLDPRT" download>大通盖.SLDPRT</a>
+          <a href="Solidworks/减速器/小垫片.SLDPRT" download>小垫片.SLDPRT</a>
+          <a href="Solidworks/减速器/小端盖.SLDPRT" download>小端盖.SLDPRT</a>
+          <a href="Solidworks/减速器/小通盖.SLDPRT" download>小通盖.SLDPRT</a>
+          <a href="Solidworks/减速器/端盖.SLDPRT" download>端盖.SLDPRT</a>
+          <a href="Solidworks/减速器/螺塞.SLDPRT" download>螺塞.SLDPRT</a>
+          <a href="Solidworks/减速器/螺栓M20.SLDPRT" download>螺栓M20.SLDPRT</a>
+          <a href="Solidworks/减速器/螺栓M36.SLDPRT" download>螺栓M36.SLDPRT</a>
+          <a href="Solidworks/减速器/螺栓M36X100.SLDPRT" download>螺栓M36X100.SLDPRT</a>
+          <a href="Solidworks/减速器/螺母M20×2.5.SLDPRT" download>螺母M20×2.5.SLDPRT</a>
+          <a href="Solidworks/减速器/螺母M36×4.0.sldprt" download>螺母M36×4.0.sldprt</a>
+          <a href="Solidworks/减速器/通气塞.SLDPRT" download>通气塞.SLDPRT</a>
+
+          <div class="folder-label">减速器/高速轴组件</div>
+          <a href="Solidworks/减速器/高速轴组件/减速器总装配1-吴俊超.SLDASM" download>减速器总装配1-吴俊超.SLDASM</a>
+          <a href="Solidworks/减速器/高速轴组件/小齿轮.SLDPRT" download>小齿轮.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴.SLDPRT" download>高速轴.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴套筒.SLDPRT" download>高速轴套筒.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴组件.SLDASM" download>高速轴组件.SLDASM</a>
+          <a href="Solidworks/减速器/高速轴组件/高速键.SLDPRT" download>高速键.SLDPRT</a>
+
+          <div class="folder-label">减速器/高速轴组件/高速轴轴承</div>
+          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承.SLDASM" download>高速轴轴承.SLDASM</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承保持架.SLDPRT" download>高速轴轴承保持架.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承外圈.SLDPRT" download>高速轴轴承外圈.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠.SLDPRT" download>高速轴轴承滚珠.SLDPRT</a>
+          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠装配体.SLDASM" download>高速轴轴承滚珠装配体.SLDASM</a>
+
+          <div class="folder-label">减速器/低速轴组件</div>
+          <a href="Solidworks/减速器/低速轴组件/低速轴.SLDPRT" download>低速轴.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/低速键.SLDPRT" download>低速键.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/半成品2.SLDPRT" download>半成品2.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/大齿轮.SLDPRT" download>大齿轮.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/套筒.SLDPRT" download>套筒.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/涡轮减速器-吴俊超.SLDPRT" download>涡轮减速器-吴俊超.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
+          <a href="Solidworks/减速器/低速轴组件/齿轮片-吴俊超.SLDPRT" download>齿轮片-吴俊超.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/齿轮箱体-吴俊超.SLDPRT" download>齿轮箱体-吴俊超.SLDPRT</a>
+
+          <div class="folder-label">减速器/低速轴组件/低速轴轴承</div>
+          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承.SLDASM" download>低速轴轴承.SLDASM</a>
+          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承保持架.SLDPRT" download>低速轴轴承保持架.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承外圈.SLDPRT" download>低速轴轴承外圈.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠.SLDPRT" download>低速轴轴承滚珠.SLDPRT</a>
+          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠装配体.SLDASM" download>低速轴轴承滚珠装配体.SLDASM</a>
+
+          <div class="folder-label">单缸活塞机构</div>
+          <a href="Solidworks/单缸活塞机构/单缸活塞装配.SLDASM" download>单缸活塞装配.SLDASM</a>
+          <a href="Solidworks/单缸活塞机构/支撑.SLDPRT" download>支撑.SLDPRT</a>
+          <a href="Solidworks/单缸活塞机构/曲轴.SLDPRT" download>曲轴.SLDPRT</a>
+          <a href="Solidworks/单缸活塞机构/气缸体.SLDPRT" download>气缸体.SLDPRT</a>
+          <a href="Solidworks/单缸活塞机构/活塞.SLDPRT" download>活塞.SLDPRT</a>
+          <a href="Solidworks/单缸活塞机构/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
+          <a href="Solidworks/单缸活塞机构/装配体5半成品.SLDASM" download>装配体5半成品.SLDASM</a>
+          <a href="Solidworks/单缸活塞机构/连杆.SLDPRT" download>连杆.SLDPRT</a>
+
+          <div class="folder-label">液压夹具体</div>
+          <a href="Solidworks/液压夹具体/Axe.SLDPRT" download>Axe.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Cache en plastique.SLDPRT" download>Cache en plastique.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Corps.SLDPRT" download>Corps.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Joint torique.SLDPRT" download>Joint torique.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Levier.SLDPRT" download>Levier.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Piston Hgd.SLDPRT" download>Piston Hgd.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/Piston.SLDPRT" download>Piston.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/couvercle.SLDPRT" download>couvercle.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/fond.SLDPRT" download>fond.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/joint de piston.SLDPRT" download>joint de piston.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/mors.SLDPRT" download>mors.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/petit joint de piston.SLDPRT" download>petit joint de piston.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/pince type HGD.SLDASM" download>pince type HGD.SLDASM</a>
+          <a href="Solidworks/液压夹具体/piston et joints.SLDASM" download>piston et joints.SLDASM</a>
+          <a href="Solidworks/液压夹具体/segment magnetique.SLDPRT" download>segment magnetique.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/拉伸切除控制零件.SLDPRT" download>拉伸切除控制零件.SLDPRT</a>
+          <a href="Solidworks/液压夹具体/液压夹具体.SLDASM" download>液压夹具体.SLDASM</a>
+
+          <div class="folder-label">螺栓联接</div>
+          <a href="Solidworks/螺栓联接/20弹簧垫片.sldprt" download>20弹簧垫片.sldprt</a>
+          <a href="Solidworks/螺栓联接/M20×90螺栓.sldprt" download>M20×90螺栓.sldprt</a>
+          <a href="Solidworks/螺栓联接/M20螺母.sldprt" download>M20螺母.sldprt</a>
+          <a href="Solidworks/螺栓联接/盖板.SLDPRT" download>盖板.SLDPRT</a>
+          <a href="Solidworks/螺栓联接/缸体.SLDPRT" download>缸体.SLDPRT</a>
+
+          <div class="folder-label">齿轮配合装配</div>
+          <a href="Solidworks/齿轮配合装配/m0.6z23.SLDPRT" download>m0.6z23.SLDPRT</a>
+          <a href="Solidworks/齿轮配合装配/m0.6z29.SLDPRT" download>m0.6z29.SLDPRT</a>
+          <a href="Solidworks/齿轮配合装配/大齿轮轴.SLDPRT" download>大齿轮轴.SLDPRT</a>
+          <a href="Solidworks/齿轮配合装配/小齿轮轴.SLDPRT" download>小齿轮轴.SLDPRT</a>
+          <a href="Solidworks/齿轮配合装配/薄壁测板.SLDPRT" download>薄壁测板.SLDPRT</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -554,7 +953,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.gallery-item').forEach(el => observer.observe(el));
+document.querySelectorAll('.gallery-item, .skill-card').forEach(el => observer.observe(el));
 </script>
 
 </body>
