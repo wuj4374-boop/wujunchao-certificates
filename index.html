@@ -3,148 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>欢迎来到吴俊超的材料证明小屋</title>
+<title>吴俊超 · 个人材料数字展馆</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg-deep: #080808;
-  --bg-mid: #0D0D0D;
-  --bg-surface: #111111;
-  --text-primary: #EEECE8;
-  --text-secondary: rgba(238, 236, 232, 0.55);
-  --text-muted: rgba(238, 236, 232, 0.25);
-  --accent-warm: #C8BEA0;
-  --accent-silver: #A8A4A0;
-  --border-base: rgba(238, 236, 232, 0.06);
-  --border-hover: rgba(238, 236, 232, 0.15);
-  --glow-subtle: rgba(200, 190, 160, 0.06);
-  --radius: 18px;
+  --wall: #080706;
+  --wall-light: #0d0b0a;
+  --wall-warm: #100d0a;
+  --text-primary: #ece8e0;
+  --text-secondary: rgba(236, 232, 224, 0.5);
+  --text-muted: rgba(236, 232, 224, 0.18);
+  --gold: #c4a86a;
+  --gold-dim: rgba(196, 168, 106, 0.08);
+  --gold-glow: rgba(196, 168, 106, 0.04);
+  --spotlight: rgba(255, 240, 210, 0.03);
+  --frame-border: rgba(196, 168, 106, 0.12);
+  --frame-hover: rgba(196, 168, 106, 0.25);
+  --radius: 2px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-deep);
+  background: var(--wall);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background: rgba(200, 190, 160, 0.2);
-  color: #fff;
-}
-
-::-webkit-scrollbar { width: 5px; }
+::selection { background: rgba(196, 168, 106, 0.25); color: #fff; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(238,236,232,0.07); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(238,236,232,0.12); }
+::-webkit-scrollbar-thumb { background: rgba(236,232,224,0.06); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(236,232,224,0.1); }
 
-/* ===== Background 3-Layer System ===== */
-
-/* Layer 1: Gradient base */
-body::before {
-  content: '';
+/* ===== Gallery Wall ===== */
+.wall {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Base gradient — gallery wall */
+.wall-base {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(200, 190, 160, 0.04) 0%, transparent 70%),
-    radial-gradient(ellipse 70% 50% at 80% 100%, rgba(168, 164, 160, 0.03) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(200, 190, 160, 0.025) 0%, transparent 50%),
-    linear-gradient(180deg, #080808 0%, #0B0A09 40%, #0E0D0C 70%, #0A0A0A 100%);
-  z-index: 0;
-  pointer-events: none;
+    radial-gradient(ellipse 100% 50% at 50% 0%, rgba(60,50,30,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(40,35,25,0.03) 0%, transparent 60%),
+    linear-gradient(180deg, #080706 0%, #0b0907 30%, #0d0b08 60%, #090807 100%);
 }
 
-/* Layer 2: Blur blobs */
-.ambient-blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.25;
-}
-
-.ambient-blob-1 {
-  width: 500px; height: 500px;
-  background: rgba(200, 190, 160, 0.06);
-  top: -15%; left: -10%;
-  animation: blobDrift1 30s ease-in-out infinite;
-}
-.ambient-blob-2 {
-  width: 600px; height: 600px;
-  background: rgba(168, 164, 160, 0.04);
-  bottom: -20%; right: -15%;
-  animation: blobDrift2 35s ease-in-out infinite;
-}
-.ambient-blob-3 {
-  width: 350px; height: 350px;
-  background: rgba(200, 190, 160, 0.03);
-  top: 45%; left: 55%;
-  animation: blobDrift3 25s ease-in-out infinite;
-}
-
-@keyframes blobDrift1 {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(80px, -60px); }
-  66% { transform: translate(-40px, 40px); }
-}
-@keyframes blobDrift2 {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(-60px, -80px); }
-  66% { transform: translate(50px, 30px); }
-}
-@keyframes blobDrift3 {
-  0%, 100% { transform: translate(-50%, -50%); }
-  33% { transform: translate(-40%, -55%); }
-  66% { transform: translate(-60%, -45%); }
-}
-
-/* Layer 3: Noise texture */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+/* Subtle wall texture */
+.wall-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
 
-/* ===== Loading Bar ===== */
-.loading-bar {
+/* Warm ambient glow */
+.wall-ambient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+}
+.wall-ambient-1 {
+  width: 600px; height: 600px;
+  background: var(--gold);
+  top: -20%; left: -10%;
+  animation: ambDrift1 40s ease-in-out infinite;
+}
+.wall-ambient-2 {
+  width: 500px; height: 500px;
+  background: var(--gold);
+  bottom: -15%; right: -10%;
+  animation: ambDrift2 35s ease-in-out infinite;
+  opacity: 0.08;
+}
+
+@keyframes ambDrift1 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(60px, -40px); }
+  66% { transform: translate(-30px, 30px); }
+}
+@keyframes ambDrift2 {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(-50px, -60px); }
+  66% { transform: translate(40px, 20px); }
+}
+
+/* ===== Loading ===== */
+.load-curtain {
   position: fixed;
-  top: 0; left: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(200, 190, 160, 0.3), rgba(168, 164, 160, 0.3), transparent);
-  background-size: 200% 100%;
-  animation: barGlide 2s ease-in-out infinite;
+  inset: 0;
+  background: var(--wall);
   z-index: 10000;
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+.load-curtain.done {
+  opacity: 0;
+  visibility: hidden;
 }
 
-@keyframes barGlide {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+.load-sign {
+  font-size: 0.65rem;
+  letter-spacing: 0.5em;
+  color: var(--text-muted);
+  font-weight: 200;
+  animation: loadPulse 2s ease-in-out infinite;
 }
 
-/* ===== Hero ===== */
-.hero {
+@keyframes loadPulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.5; }
+}
+
+/* ===== Exhibition Entrance (Hero) ===== */
+.entrance {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -154,71 +143,87 @@ body::after {
   padding: 40px 24px;
 }
 
-.hero::after {
+/* Portal glow */
+.entrance::before {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 200px;
-  background: linear-gradient(180deg, transparent, var(--bg-deep));
+  top: 50%; left: 50%;
+  width: 600px; height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(196,168,106,0.025) 0%, transparent 60%);
   pointer-events: none;
 }
 
-.hero-title {
-  font-size: clamp(2.2rem, 6vw, 4.8rem);
-  font-weight: 250;
-  letter-spacing: 0.15em;
-  color: var(--text-primary);
-  line-height: 1.4;
+.entrance-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.6em;
+  color: var(--text-muted);
+  font-weight: 200;
+  margin-bottom: 32px;
   opacity: 0;
-  transform: translateY(30px);
-  animation: heroEntry 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  animation: fadeSlideUp 1.2s var(--ease-out) 0.3s forwards;
 }
 
-.hero-title em {
+.entrance-title {
+  position: relative;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 200;
+  letter-spacing: 0.25em;
+  line-height: 1.25;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeSlideUp 1.4s var(--ease-out) 0.5s forwards;
+}
+
+.entrance-title em {
   font-style: normal;
-  background: linear-gradient(135deg, #E8E0D0 0%, #C8BEA0 40%, #A8A090 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: block;
+  font-size: 0.45em;
+  letter-spacing: 0.5em;
+  font-weight: 200;
+  color: var(--text-secondary);
+  margin-top: 12px;
 }
 
-.hero-decoration {
+.entrance-divider {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 36px auto;
+  margin: 40px auto;
   opacity: 0;
-  animation: heroFade 1s ease 0.8s forwards;
+  animation: fadeIn 1s ease 1.4s forwards;
 }
 
-.hero-decoration .line {
+.entrance-divider .line {
   width: 40px;
   height: 0.5px;
-  background: linear-gradient(90deg, transparent, rgba(200, 190, 160, 0.25));
+}
+.entrance-divider .line:first-child {
+  background: linear-gradient(90deg, transparent, rgba(196,168,106,0.15));
+}
+.entrance-divider .line:last-child {
+  background: linear-gradient(90deg, rgba(196,168,106,0.15), transparent);
 }
 
-.hero-decoration .line:last-child {
-  background: linear-gradient(90deg, rgba(200, 190, 160, 0.25), transparent);
-}
-
-.hero-decoration .diamond {
+.entrance-divider .diamond {
   width: 4px;
   height: 4px;
-  background: rgba(200, 190, 160, 0.2);
+  background: rgba(196,168,106,0.15);
   transform: rotate(45deg);
   flex-shrink: 0;
 }
 
-.hero-subtitle {
-  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-  letter-spacing: 0.45em;
+.entrance-sub {
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  letter-spacing: 0.5em;
   color: var(--text-secondary);
-  font-weight: 300;
+  font-weight: 200;
   opacity: 0;
-  animation: heroFade 1s ease 1.1s forwards;
+  animation: fadeIn 1s ease 1.8s forwards;
 }
 
-.hero-scroll-hint {
+.entrance-hint {
   position: absolute;
   bottom: 48px;
   left: 50%;
@@ -226,1228 +231,1050 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   opacity: 0;
-  animation: heroFade 1s ease 2s forwards;
-  z-index: 2;
+  animation: fadeIn 1s ease 2.8s forwards;
 }
 
-.scroll-ring {
-  width: 28px;
-  height: 28px;
-  border: 0.5px solid rgba(238, 236, 232, 0.12);
+.hint-ring {
+  width: 24px; height: 24px;
+  border: 0.5px solid rgba(236,232,224,0.08);
   border-radius: 50%;
   position: relative;
-  animation: ringPulse 3s ease-in-out infinite;
+  animation: hintPulse 4s ease-in-out infinite;
 }
-
-.scroll-ring::after {
+.hint-ring::after {
   content: '';
   position: absolute;
   top: 50%; left: 50%;
-  width: 2px;
-  height: 2px;
+  width: 2px; height: 2px;
   border-radius: 50%;
-  background: rgba(238, 236, 232, 0.2);
+  background: rgba(236,232,224,0.15);
   transform: translate(-50%, -50%);
-  animation: dotBreathe 3s ease-in-out infinite;
+  animation: hintDot 4s ease-in-out infinite;
 }
-
-@keyframes ringPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-@keyframes dotBreathe {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-  50% { transform: translate(-50%, -50%) scale(1.8); opacity: 0.6; }
-}
-
-.scroll-text {
-  font-size: 0.5rem;
-  letter-spacing: 0.35em;
+.hint-text {
+  font-size: 0.45rem;
+  letter-spacing: 0.4em;
   color: var(--text-muted);
-  text-transform: uppercase;
+  font-weight: 200;
 }
 
-@keyframes heroEntry {
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+@keyframes hintDot {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+  50% { transform: translate(-50%, -50%) scale(2); opacity: 0.4; }
+}
+@keyframes fadeSlideUp {
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes heroFade {
+@keyframes fadeIn {
   to { opacity: 1; }
 }
 
-/* ===== Section Divider (Gradient fade) ===== */
-.section-divider {
+/* ===== Gallery Section Marker ===== */
+.gallery-marker {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 24px;
+  padding: 60px 24px;
   text-align: center;
 }
 
-.section-divider .track {
-  position: relative;
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(180deg, transparent, rgba(200, 190, 160, 0.12), transparent);
-}
-
-.section-divider .track::before,
-.section-divider .track::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(200, 190, 160, 0.08);
-  transform: translateX(-50%);
-}
-
-.section-divider .track::before { top: -1px; }
-.section-divider .track::after { bottom: -1px; }
-
-.section-divider .label {
-  font-size: 0.5rem;
-  letter-spacing: 0.55em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-top: 16px;
-}
-
-/* ===== Gallery Rail (visual connection) ===== */
-.gallery-rail {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
-
-/* Vertical tracking line */
-.gallery-rail::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
+.gallery-marker .track {
   width: 0.5px;
-  height: 100%;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(200, 190, 160, 0.05) 5%,
-    rgba(200, 190, 160, 0.05) 95%,
-    transparent 100%
-  );
-  z-index: 0;
-  pointer-events: none;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, rgba(196,168,106,0.06), transparent);
 }
 
-/* ===== Main ===== */
-main {
+.gallery-marker .label {
+  font-size: 0.45rem;
+  letter-spacing: 0.6em;
+  color: var(--text-muted);
+  font-weight: 200;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+/* ===== Exhibit (Certificate) ===== */
+.exhibit {
   position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 32px 100px;
-}
-
-/* ===== Section Intro ===== */
-.section-intro {
-  text-align: center;
-  margin-bottom: 100px;
-}
-
-.section-intro h2 {
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-}
-
-.section-intro .intro-ornament {
+  z-index: 1;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 24px auto;
-}
-
-.section-intro .intro-ornament span {
-  display: block;
-  width: 16px;
-  height: 0.5px;
-  background: rgba(200, 190, 160, 0.12);
-}
-
-.section-intro .intro-ornament i {
-  display: block;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: rgba(200, 190, 160, 0.15);
-}
-
-.section-intro p {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  letter-spacing: 0.22em;
-  font-weight: 300;
-}
-
-/* ===== Gallery ===== */
-.gallery-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 140px;
-}
-
-.gallery-item {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  padding: 80px 40px;
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(60px);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
 }
 
-.gallery-item.revealed {
+.exhibit.reveal {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.gallery-item:nth-child(odd) {
-  align-items: flex-start;
-  padding-right: 8%;
-}
-
-.gallery-item:nth-child(even) {
-  align-items: flex-end;
-  padding-left: 8%;
-}
-
-.gallery-item:nth-child(odd) .card-wrapper {
-  max-width: min(78%, 540px);
-}
-
-.gallery-item:nth-child(even) .card-wrapper {
-  max-width: min(78%, 540px);
-}
-
-/* ===== Certificate Card ===== */
-.card-wrapper {
+.exhibit-inner {
+  display: flex;
+  align-items: center;
+  gap: 60px;
   width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.gallery-item .image-wrapper {
-  position: relative;
-  width: 100%;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  cursor: pointer;
-  z-index: 1;
-
-  /* Card surface with subtle gradient */
-  background: linear-gradient(145deg, rgba(238,236,232,0.035) 0%, rgba(238,236,232,0.01) 100%);
-
-  /* Inner shadow for depth */
-  box-shadow:
-    inset 0 1px 0 rgba(238, 236, 232, 0.06),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-    0 4px 24px rgba(0, 0, 0, 0.3);
-
-  /* Gradient border (subtle) */
-  border: 0.5px solid transparent;
-  background-clip: padding-box;
-
-  transition: box-shadow 0.5s ease;
+.exhibit:nth-child(even) .exhibit-inner {
+  flex-direction: row-reverse;
 }
 
-/* Gradient border glow layer */
-.gallery-item .image-wrapper::before {
+/* Spotlight beam */
+.exhibit::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  padding: 0.5px;
-  background: linear-gradient(135deg, rgba(200, 190, 160, 0.08) 0%, rgba(168, 164, 160, 0.03) 50%, rgba(200, 190, 160, 0.08) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-}
-
-.gallery-item .image-wrapper:hover::before {
-  background: linear-gradient(135deg, rgba(200, 190, 160, 0.15) 0%, rgba(168, 164, 160, 0.06) 50%, rgba(200, 190, 160, 0.15) 100%);
-}
-
-.gallery-item .image-wrapper:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(238, 236, 232, 0.08),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-    0 8px 40px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(200, 190, 160, 0.03);
-}
-
-/* Light sweep on hover */
-.gallery-item .image-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -80%;
-  width: 50%;
+  top: 0; left: 0; right: 0;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(238, 236, 232, 0.04), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  background: radial-gradient(ellipse 60% 30% at 50% -10%, var(--spotlight) 0%, transparent 70%);
   pointer-events: none;
-  z-index: 3;
+  opacity: 0;
+  transition: opacity 1.5s ease;
 }
 
-.gallery-item .image-wrapper:hover::after {
-  left: 130%;
+.exhibit.reveal::before {
+  opacity: 1;
 }
 
-/* Image */
-.image-wrapper img {
+/* Artwork frame */
+.exhibit-frame {
+  position: relative;
+  flex: 0 0 min(55%, 700px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(145deg, rgba(236,232,224,0.02) 0%, rgba(236,232,224,0.005) 100%);
+  box-shadow:
+    0 0 0 0.5px var(--frame-border),
+    inset 0 0 0 0.5px rgba(236,232,224,0.02),
+    0 8px 40px rgba(0,0,0,0.5);
+  transition: box-shadow 1s var(--ease-out);
+}
+
+.exhibit-frame::before {
+  content: '';
+  position: absolute;
+  inset: -0.5px;
+  z-index: -1;
+  background: linear-gradient(160deg, rgba(196,168,106,0.12) 0%, transparent 40%, transparent 60%, rgba(196,168,106,0.06) 100%);
+  opacity: 0;
+  transition: opacity 1s var(--ease-out);
+}
+
+.exhibit-frame:hover::before {
+  opacity: 1;
+}
+
+.exhibit-frame::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(236,232,224,0.03), transparent);
+  transform: skewX(-25deg);
+  transition: left 1.2s var(--ease-out);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.exhibit-frame:hover::after {
+  left: 150%;
+}
+
+.exhibit-frame img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease;
-  opacity: 0.88;
+  transition: transform 1.2s var(--ease-out), opacity 1s ease;
+  opacity: 0.92;
 }
 
-.gallery-item .image-wrapper:hover img {
-  transform: scale(1.03);
+.exhibit-frame:hover img {
+  transform: scale(1.04);
   opacity: 1;
 }
 
-/* Gradient overlay at bottom of image */
-.image-wrapper .img-overlay {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 50%;
-  background: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 1;
+.exhibit-frame:hover {
+  box-shadow:
+    0 0 0 0.5px var(--frame-hover),
+    inset 0 0 0 0.5px rgba(236,232,224,0.04),
+    0 12px 60px rgba(0,0,0,0.6),
+    0 0 80px rgba(196,168,106,0.02);
 }
 
-/* Hover overlay icon */
-.image-overlay {
+/* Frame overlay icon */
+.exhibit-open {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.5s ease;
-  z-index: 2;
+  transition: opacity 0.8s ease;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.gallery-item .image-wrapper:hover .image-overlay {
+.exhibit-frame:hover .exhibit-open {
   opacity: 1;
 }
 
-.overlay-icon {
-  width: 44px;
-  height: 44px;
+.exhibit-open span {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 0.5px solid rgba(238, 236, 232, 0.1);
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 0.5px solid rgba(236,232,224,0.08);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(238, 236, 232, 0.5);
-  font-size: 1.1rem;
+  color: rgba(236,232,224,0.35);
+  font-size: 1rem;
   font-weight: 200;
-  transform: translateY(8px);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  font-family: inherit;
+  transform: translateY(6px);
+  transition: transform 0.6s var(--ease-out);
 }
 
-.gallery-item .image-wrapper:hover .overlay-icon {
+.exhibit-frame:hover .exhibit-open span {
   transform: translateY(0);
 }
 
-/* Image info */
-.image-info {
-  padding: 22px 6px 0;
-  position: relative;
+/* Exhibit label (museum-style wall text) */
+.exhibit-label {
+  flex: 1;
+  min-width: 200px;
 }
 
-.gallery-item:nth-child(odd) .image-info {
-  text-align: left;
+.exhibit-label .num {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 16px;
 }
 
-.gallery-item:nth-child(even) .image-info {
-  text-align: right;
+.exhibit-label .num::before {
+  content: '— ';
 }
 
-.image-info h3 {
-  font-size: 0.95rem;
-  font-weight: 350;
-  letter-spacing: 0.12em;
+.exhibit-label h2 {
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 250;
+  letter-spacing: 0.18em;
   color: var(--text-primary);
   margin-bottom: 6px;
-  display: inline-block;
-  position: relative;
+  line-height: 1.4;
 }
 
-.image-info h3::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 0.5px;
-  background: rgba(200, 190, 160, 0.2);
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.gallery-item:nth-child(even) .image-info h3::after {
-  left: auto;
-  right: 0;
-}
-
-.card-wrapper:hover .image-info h3::after {
-  width: 100%;
-}
-
-.image-info p {
+.exhibit-label .desc {
   font-size: 0.75rem;
+  letter-spacing: 0.15em;
   color: var(--text-secondary);
-  letter-spacing: 0.1em;
-  font-weight: 300;
+  font-weight: 200;
+  line-height: 1.6;
 }
 
-/* Certificate number */
-.gallery-item .cert-num {
-  position: absolute;
-  top: 16px;
-  right: 18px;
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  z-index: 3;
-  font-weight: 300;
-  transition: color 0.4s ease;
+.exhibit-label .sep {
+  display: block;
+  width: 20px;
+  height: 0.5px;
+  background: rgba(196,168,106,0.1);
+  margin-top: 14px;
 }
 
-.gallery-item:nth-child(even) .cert-num {
-  right: auto;
-  left: 18px;
-}
-
-.gallery-item .image-wrapper:hover .cert-num {
-  color: var(--text-secondary);
-}
-
-/* ===== Skills Section ===== */
-.skills-section {
-  margin-top: 140px;
-  padding-top: 60px;
-  border-top: 0.5px solid rgba(200, 190, 160, 0.06);
+/* ===== Archive Section (Skills) ===== */
+.archive {
   position: relative;
+  z-index: 1;
+  padding: 120px 40px 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
 }
 
-.skills-section::before {
+.archive.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.archive::before {
   content: '';
   position: absolute;
-  top: -0.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 0.5px;
-  background: rgba(200, 190, 160, 0.12);
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,168,106,0.06), transparent);
 }
 
-.skills-intro {
+.archive-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
-.skills-intro h2 {
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
+.archive-header .label {
+  font-size: 0.5rem;
+  letter-spacing: 0.6em;
+  color: var(--text-muted);
+  font-weight: 200;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.archive-header h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 200;
+  letter-spacing: 0.25em;
   color: var(--text-primary);
-  margin-bottom: 12px;
 }
 
-.skills-intro .skills-ornament {
+.archive-header .ornament {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin: 20px auto;
+  margin: 20px auto 16px;
 }
 
-.skills-intro .skills-ornament span {
+.archive-header .ornament span {
   display: block;
   width: 16px;
   height: 0.5px;
-  background: rgba(200, 190, 160, 0.12);
+  background: rgba(196,168,106,0.08);
 }
 
-.skills-intro .skills-ornament i {
+.archive-header .ornament i {
   display: block;
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background: rgba(200, 190, 160, 0.15);
+  background: rgba(196,168,106,0.1);
 }
 
-.skills-intro .skills-subtitle {
+.archive-header .sub {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
   color: var(--text-secondary);
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  font-weight: 300;
-  font-style: italic;
+  font-weight: 200;
 }
 
-.skills-grid {
+.archive-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.skill-card {
-  background: linear-gradient(145deg, rgba(238,236,232,0.03) 0%, rgba(238,236,232,0.008) 100%);
-  border: 0.5px solid rgba(238, 236, 232, 0.06);
-  border-radius: 14px;
-  overflow: hidden;
+/* Archive vitrine (display case) */
+.vitrine {
+  background: linear-gradient(145deg, rgba(236,232,224,0.02) 0%, rgba(236,232,224,0.005) 100%);
+  border: 0.5px solid rgba(236,232,224,0.04);
   opacity: 0;
   transform: translateY(30px);
-  box-shadow: inset 0 1px 0 rgba(238, 236, 232, 0.04), 0 2px 12px rgba(0,0,0,0.2);
-  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), border-color 0.8s ease;
 }
 
-.skill-card.revealed {
+.vitrine.reveal {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
-.skill-card:hover {
-  border-color: rgba(238, 236, 232, 0.10);
-  box-shadow: inset 0 1px 0 rgba(238, 236, 232, 0.06), 0 4px 20px rgba(0,0,0,0.3);
+.vitrine:hover {
+  border-color: rgba(196,168,106,0.06);
 }
 
-.skill-header {
-  padding: 18px 22px 14px;
-  font-size: 0.9rem;
-  font-weight: 350;
-  letter-spacing: 0.14em;
-  color: var(--text-primary);
-  border-bottom: 0.5px solid rgba(238,236,232,0.04);
+.vitrine-header {
+  padding: 20px 24px 14px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  border-bottom: 0.5px solid rgba(236,232,224,0.03);
 }
 
-.skill-count {
-  font-size: 0.6rem;
+.vitrine-header h3 {
+  font-size: 0.75rem;
+  font-weight: 350;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+}
+
+.vitrine-header .count {
+  font-size: 0.5rem;
   color: var(--text-muted);
-  letter-spacing: 0.08em;
-  font-weight: 300;
+  letter-spacing: 0.1em;
+  font-weight: 200;
 }
 
-.skill-file-list {
-  max-height: 380px;
+.vitrine-body {
+  padding: 8px 0;
+  max-height: 340px;
   overflow-y: auto;
-  padding: 4px 0;
 }
 
-.skill-file-list::-webkit-scrollbar { width: 3px; }
-.skill-file-list::-webkit-scrollbar-track { background: transparent; }
-.skill-file-list::-webkit-scrollbar-thumb { background: rgba(238,236,232,0.04); border-radius: 2px; }
+.vitrine-body::-webkit-scrollbar { width: 2px; }
+.vitrine-body::-webkit-scrollbar-track { background: transparent; }
+.vitrine-body::-webkit-scrollbar-thumb { background: rgba(236,232,224,0.02); border-radius: 1px; }
 
-.skill-file-list a {
+.vitrine-body a {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 22px;
+  padding: 5px 24px;
   color: var(--text-secondary);
   text-decoration: none;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   letter-spacing: 0.05em;
-  transition: color 0.35s ease, padding-left 0.35s ease, background 0.35s ease;
-  font-weight: 300;
+  transition: color 0.4s ease, padding-left 0.4s ease, background 0.4s ease;
+  font-weight: 200;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.skill-file-list a::before {
-  content: "";
+.vitrine-body a::before {
+  content: '';
   width: 2px;
   height: 2px;
   border-radius: 50%;
   background: var(--text-muted);
   flex-shrink: 0;
-  transition: background 0.35s ease;
+  transition: background 0.4s ease;
 }
 
-.skill-file-list a:hover {
+.vitrine-body a:hover {
   color: var(--text-primary);
-  padding-left: 26px;
-  background: rgba(200, 190, 160, 0.03);
+  padding-left: 28px;
+  background: rgba(196,168,106,0.02);
 }
 
-.skill-file-list a:hover::before {
-  background: var(--accent-warm);
+.vitrine-body a:hover::before {
+  background: var(--gold);
 }
 
-.folder-label {
-  padding: 14px 22px 4px;
-  font-size: 0.55rem;
+.vitrine-folder {
+  padding: 12px 24px 4px;
+  font-size: 0.45rem;
   color: var(--text-muted);
-  letter-spacing: 0.2em;
-  font-weight: 400;
+  letter-spacing: 0.25em;
+  font-weight: 300;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 /* ===== Footer ===== */
-footer {
+.gallery-footer {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   text-align: center;
   padding: 60px 24px 40px;
   color: var(--text-muted);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  font-weight: 300;
-  border-top: 0.5px solid rgba(200, 190, 160, 0.04);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  font-weight: 200;
+  border-top: 0.5px solid rgba(196,168,106,0.03);
 }
 
-.footer-ornament {
+.gallery-footer .f-ornament {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
-.footer-ornament span {
-  display: block;
+.gallery-footer .f-ornament span {
   width: 12px;
   height: 0.5px;
-  background: rgba(200, 190, 160, 0.08);
+  background: rgba(196,168,106,0.05);
 }
 
-.footer-ornament i {
-  display: block;
+.gallery-footer .f-ornament i {
   width: 2px;
   height: 2px;
   border-radius: 50%;
-  background: rgba(200, 190, 160, 0.10);
+  background: rgba(196,168,106,0.06);
 }
 
-/* ===== Lightbox ===== */
-.lightbox {
+/* ===== Viewing Room (Lightbox) ===== */
+.viewing-room {
   display: none;
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.94);
+  inset: 0;
+  background: rgba(0,0,0,0.95);
   z-index: 9999;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
 }
 
-.lightbox.active {
+.viewing-room.active {
   display: flex;
 }
 
-.lightbox-content {
-  max-width: 88vw;
-  max-height: 84vh;
+.viewing-room .vr-content {
+  max-width: 90vw;
+  max-height: 85vh;
   object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.5);
-  animation: lightboxIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+  animation: vrEnter 0.6s var(--ease-out);
 }
 
-@keyframes lightboxIn {
-  from { transform: scale(0.95); opacity: 0; }
+@keyframes vrEnter {
+  from { transform: scale(0.92); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
-.lightbox-close {
+.vr-close {
   position: absolute;
-  top: 24px;
-  right: 28px;
-  width: 40px;
-  height: 40px;
+  top: 28px; right: 32px;
+  width: 40px; height: 40px;
   cursor: pointer;
-  opacity: 0.25;
-  transition: opacity 0.3s;
-  background: none;
-  border: none;
-  font-family: inherit;
-  z-index: 10;
+  opacity: 0.12;
+  transition: opacity 0.4s;
+  background: none; border: none;
   color: #fff;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
   font-weight: 200;
+  z-index: 10;
+  font-family: inherit;
 }
 
-.lightbox-close:hover { opacity: 0.6; }
+.vr-close:hover { opacity: 0.3; }
 
-.lightbox-nav {
+.vr-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.08);
   cursor: pointer;
-  opacity: 0.4;
-  transition: opacity 0.3s, color 0.3s;
-  background: none;
-  border: none;
-  padding: 28px;
-  font-family: inherit;
-  z-index: 10;
-  font-size: 24px;
+  opacity: 0.3;
+  transition: opacity 0.4s, color 0.4s;
+  background: none; border: none;
+  padding: 24px;
+  font-size: 20px;
   font-weight: 200;
+  z-index: 10;
+  font-family: inherit;
 }
 
-.lightbox-nav:hover { opacity: 0.7; color: rgba(255,255,255,0.6); }
-.lightbox-prev { left: 4px; }
-.lightbox-next { right: 4px; }
+.vr-nav:hover { opacity: 0.5; color: rgba(255,255,255,0.3); }
+.vr-prev { left: 4px; }
+.vr-next { right: 4px; }
 
-.lightbox-counter {
+.vr-counter {
   position: absolute;
-  bottom: 28px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
-  color: rgba(255,255,255,0.15);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.08);
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
   z-index: 10;
+  font-weight: 200;
 }
 
 /* ===== Responsive ===== */
 @media (max-width: 1024px) {
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
-  .gallery-item:nth-child(odd),
-  .gallery-item:nth-child(even) {
-    padding-right: 0;
-    padding-left: 0;
-    align-items: center;
-  }
-  .gallery-item:nth-child(odd) .card-wrapper,
-  .gallery-item:nth-child(even) .card-wrapper {
-    max-width: 100%;
-  }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); }
+  .exhibit-inner { gap: 40px; }
+  .exhibit-frame { flex: 0 0 min(50%, 500px); }
 }
 
 @media (max-width: 768px) {
-  .hero-title { letter-spacing: 0.1em; }
-  .gallery-grid { gap: 100px; }
-  .image-info h3 { font-size: 0.85rem; }
-  .section-intro { margin-bottom: 80px; }
-  main { padding: 20px 20px 80px; }
-  .skills-grid { grid-template-columns: 1fr; gap: 16px; }
-  .skill-file-list { max-height: 260px; }
-  .lightbox-nav { font-size: 18px; padding: 20px; }
-  .lightbox-prev { left: 2px; }
-  .lightbox-next { right: 2px; }
-  .gallery-item:nth-child(even) .image-info { text-align: left; }
-  .gallery-item:nth-child(even) .cert-num { left: auto; right: 16px; }
-  .gallery-rail { padding: 0 16px; }
-  .gallery-rail::before { display: none; }
+  .exhibit { padding: 60px 24px; min-height: auto; }
+  .exhibit-inner {
+    flex-direction: column !important;
+    gap: 24px;
+  }
+  .exhibit-frame { flex: 0 0 100%; width: 100%; }
+  .exhibit-label { text-align: left; width: 100%; }
+  .exhibit-label .num::before { content: '— '; }
+  .exhibit-label .sep { margin-left: 0; }
+  .archive-grid { grid-template-columns: 1fr; gap: 16px; }
+  .archive { padding: 80px 20px 60px; }
+  .entrance-title { letter-spacing: 0.15em; }
+  .vitrine-body { max-height: 260px; }
+  .vr-nav { padding: 16px; font-size: 16px; }
+  .vr-prev { left: 2px; }
+  .vr-next { right: 2px; }
+}
+
+@media (max-width: 480px) {
+  .exhibit { padding: 40px 16px; }
+  .exhibit-inner { gap: 16px; }
+  .exhibit-label h2 { font-size: 1rem; }
+  .archive-grid { gap: 12px; }
 }
 </style>
 </head>
 <body>
 
-<div class="loading-bar" id="loadingBar" style="width:0%"></div>
+<!-- Loading Curtain -->
+<div class="load-curtain" id="loadCurtain">
+  <span class="load-sign">载入展品</span>
+</div>
 
-<!-- Ambient blobs -->
-<div class="ambient-blob ambient-blob-1"></div>
-<div class="ambient-blob ambient-blob-2"></div>
-<div class="ambient-blob ambient-blob-3"></div>
+<!-- Gallery Wall -->
+<div class="wall">
+  <div class="wall-base"></div>
+  <div class="wall-ambient wall-ambient-1"></div>
+  <div class="wall-ambient wall-ambient-2"></div>
+  <div class="wall-noise"></div>
+</div>
 
-<!-- Hero -->
-<section class="hero">
-  <h1 class="hero-title">欢迎来到&thinsp;<em>吴俊超</em>&thinsp;的材料证明小屋</h1>
-  <div class="hero-decoration">
+<!-- Entrance -->
+<section class="entrance">
+  <p class="entrance-label">— 个人材料 · 数字展馆 —</p>
+  <h1 class="entrance-title">
+    吴俊超
+    <em>个人材料证明 · 数字档案</em>
+  </h1>
+  <div class="entrance-divider">
     <span class="line"></span>
     <span class="diamond"></span>
     <span class="line"></span>
   </div>
-  <p class="hero-subtitle">— 诚信 · 真实 · 可靠 —</p>
-  <div class="hero-scroll-hint">
-    <div class="scroll-ring"></div>
-    <span class="scroll-text">浏览履历</span>
+  <p class="entrance-sub">诚信 · 真实 · 可靠</p>
+  <div class="entrance-hint">
+    <div class="hint-ring"></div>
+    <span class="hint-text">浏览展厅</span>
   </div>
 </section>
 
-<!-- Section divider -->
-<div class="section-divider">
+<!-- Gallery Marker -->
+<div class="gallery-marker">
   <div class="track"></div>
-  <span class="label">个人证明材料总览</span>
+  <span class="label">展品陈列</span>
 </div>
 
-<main>
-  <div class="section-intro">
-    <h2>📋 个人证明材料总览</h2>
-    <div class="intro-ornament">
-      <span></span><i></i><span></span>
+<!-- Exhibits -->
+<section class="exhibit" data-index="0">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(0)">
+      <img src="1193a5b8a266cd8c96aeae2e65bff04d.jpg" alt="2024-2025 三好学生" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
     </div>
-    <p>共 8 份材料 &nbsp;·&nbsp; 点击图片查看高清大图</p>
-  </div>
-
-  <div class="gallery-rail">
-  <div class="gallery-grid">
-
-    <!-- 1 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(0)">
-          <span class="cert-num">01</span>
-          <div class="img-overlay"></div>
-          <img src="1193a5b8a266cd8c96aeae2e65bff04d.jpg" alt="2024-2025" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2024-2025</h3>
-        <p>"三好学生"证书</p>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(1)">
-          <span class="cert-num">02</span>
-          <div class="img-overlay"></div>
-          <img src="6a27b51c157f8b76ea7c345851a469e9.jpg" alt="2024-2025" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2024-2025</h3>
-        <p>"校二等优秀奖学金"证书</p>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(2)">
-          <span class="cert-num">03</span>
-          <div class="img-overlay"></div>
-          <img src="921244316addf835d39cf58a52ff25fd.jpg" alt="2024年6月" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2024年6月</h3>
-        <p>普通话水平测试等级证书</p>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(3)">
-          <span class="cert-num">04</span>
-          <div class="img-overlay"></div>
-          <img src="ac01b796f6519456877d7b23ad661da1.jpg" alt="2025年9月岳麓山桔子洲" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2025年9月岳麓山桔子洲</h3>
-        <p>"优秀志愿者"证书</p>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(4)">
-          <span class="cert-num">05</span>
-          <div class="img-overlay"></div>
-          <img src="d02f06f4addbf39bde3a223cc59a75d0.jpg" alt="2024年12月" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2024年12月</h3>
-        <p>"国家励志奖学金"证书</p>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(5)">
-          <span class="cert-num">06</span>
-          <div class="img-overlay"></div>
-          <img src="d980ad57474db3089f01ea93fc0b8c41.jpg" alt="2025年9月" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2025年9月</h3>
-        <p>"市级优秀志愿者"证书</p>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(6)">
-          <span class="cert-num">07</span>
-          <div class="img-overlay"></div>
-          <img src="9d07e0859a319448a691587ee1e5c2cb.jpg" alt="2026年4月" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>2026年4月</h3>
-        <p>"2026年度实习优秀学生"称号</p>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="gallery-item">
-      <div class="card-wrapper">
-        <div class="image-wrapper" onclick="openLightbox(7)">
-          <span class="cert-num">08</span>
-          <div class="img-overlay"></div>
-          <img src="f9d15baf3b11c1e6b17efbd02a0b24e8.jpg" alt="其他材料" loading="lazy">
-          <div class="image-overlay">
-            <span class="overlay-icon">⊕</span>
-          </div>
-        </div>
-      </div>
-      <div class="image-info">
-        <h3>其他材料</h3>
-        <p>志愿时长补充证明材料</p>
-      </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.01</p>
+      <h2>2024–2025</h2>
+      <p class="desc">"三好学生"证书</p>
+      <span class="sep"></span>
     </div>
   </div>
+</section>
+
+<section class="exhibit" data-index="1">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(1)">
+      <img src="6a27b51c157f8b76ea7c345851a469e9.jpg" alt="2024-2025 校二等优秀奖学金" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.02</p>
+      <h2>2024–2025</h2>
+      <p class="desc">"校二等优秀奖学金"证书</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="2">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(2)">
+      <img src="921244316addf835d39cf58a52ff25fd.jpg" alt="2024年6月 普通话证书" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.03</p>
+      <h2>2024年6月</h2>
+      <p class="desc">普通话水平测试等级证书</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="3">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(3)">
+      <img src="ac01b796f6519456877d7b23ad661da1.jpg" alt="2025年9月 岳麓山桔子洲 优秀志愿者" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.04</p>
+      <h2>2025年9月 · 岳麓山桔子洲</h2>
+      <p class="desc">"优秀志愿者"证书</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="4">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(4)">
+      <img src="d02f06f4addbf39bde3a223cc59a75d0.jpg" alt="2024年12月 国家励志奖学金" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.05</p>
+      <h2>2024年12月</h2>
+      <p class="desc">"国家励志奖学金"证书</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="5">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(5)">
+      <img src="d980ad57474db3089f01ea93fc0b8c41.jpg" alt="2025年9月 市级优秀志愿者" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.06</p>
+      <h2>2025年9月</h2>
+      <p class="desc">"市级优秀志愿者"证书</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="6">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(6)">
+      <img src="9d07e0859a319448a691587ee1e5c2cb.jpg" alt="2026年4月 实习优秀学生" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.07</p>
+      <h2>2026年4月</h2>
+      <p class="desc">"2026年度实习优秀学生"称号</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit" data-index="7">
+  <div class="exhibit-inner">
+    <div class="exhibit-frame" onclick="openViewingRoom(7)">
+      <img src="f9d15baf3b11c1e6b17efbd02a0b24e8.jpg" alt="其他材料 志愿时长" loading="lazy">
+      <div class="exhibit-open"><span>⊕</span></div>
+    </div>
+    <div class="exhibit-label">
+      <p class="num">展品 No.08</p>
+      <h2>其他材料</h2>
+      <p class="desc">志愿时长补充证明材料</p>
+      <span class="sep"></span>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Marker -->
+<div class="gallery-marker">
+  <div class="track"></div>
+  <span class="label">创作档案</span>
+</div>
+
+<!-- Archive (Skills) -->
+<section class="archive">
+  <div class="archive-header">
+    <span class="label">— 存档 —</span>
+    <h2>技能作品存档</h2>
+    <div class="ornament"><span></span><i></i><span></span></div>
+    <p class="sub">仅存部分手稿，许多早期作品已在迁移中散失</p>
   </div>
 
-  <!-- Skills Section -->
-  <section class="skills-section">
-    <div class="skills-intro">
-      <h2>小小技能展示</h2>
-      <div class="skills-ornament">
-        <span></span><i></i><span></span>
+  <div class="archive-grid">
+    <!-- AutoCAD -->
+    <div class="vitrine">
+      <div class="vitrine-header">
+        <h3>AutoCAD</h3>
+        <span class="count">13 件</span>
       </div>
-      <p class="skills-subtitle">只是放置了一点点小草稿，很多文件都丢失了，您将就着看</p>
+      <div class="vitrine-body">
+        <a href="AutoCAD/Drawin0.dwg" download>Drawin0.dwg</a>
+        <a href="AutoCAD/Drawing1.dwg" download>Drawing1.dwg</a>
+        <a href="AutoCAD/Drawing2.dwg" download>Drawing2.dwg</a>
+        <a href="AutoCAD/Drawing4.dwg" download>Drawing4.dwg</a>
+        <a href="AutoCAD/Drawing5.dwg" download>Drawing5.dwg</a>
+        <a href="AutoCAD/Drawing6.dwg" download>Drawing6.dwg</a>
+        <a href="AutoCAD/Drawing7.dwg" download>Drawing7.dwg</a>
+        <a href="AutoCAD/Drawing8.dwg" download>Drawing8.dwg</a>
+        <a href="AutoCAD/Drawing9.dwg" download>Drawing9.dwg</a>
+        <a href="AutoCAD/Drawingmax.dwg" download>Drawingmax.dwg</a>
+        <a href="AutoCAD/Drawingmin.dwg" download>Drawingmin.dwg</a>
+        <a href="AutoCAD/零件1-吴俊超.DWG" download>零件1-吴俊超.DWG</a>
+        <a href="AutoCAD/零件4.DWG" download>零件4.DWG</a>
+      </div>
     </div>
-    <div class="skills-grid">
 
-      <!-- AutoCAD -->
-      <div class="skill-card">
-        <div class="skill-header">
-          AutoCAD
-          <span class="skill-count">共 13 个文件</span>
-        </div>
-        <div class="skill-file-list">
-          <a href="AutoCAD/Drawin0.dwg" download>Drawin0.dwg</a>
-          <a href="AutoCAD/Drawing1.dwg" download>Drawing1.dwg</a>
-          <a href="AutoCAD/Drawing2.dwg" download>Drawing2.dwg</a>
-          <a href="AutoCAD/Drawing4.dwg" download>Drawing4.dwg</a>
-          <a href="AutoCAD/Drawing5.dwg" download>Drawing5.dwg</a>
-          <a href="AutoCAD/Drawing6.dwg" download>Drawing6.dwg</a>
-          <a href="AutoCAD/Drawing7.dwg" download>Drawing7.dwg</a>
-          <a href="AutoCAD/Drawing8.dwg" download>Drawing8.dwg</a>
-          <a href="AutoCAD/Drawing9.dwg" download>Drawing9.dwg</a>
-          <a href="AutoCAD/Drawingmax.dwg" download>Drawingmax.dwg</a>
-          <a href="AutoCAD/Drawingmin.dwg" download>Drawingmin.dwg</a>
-          <a href="AutoCAD/零件1-吴俊超.DWG" download>零件1-吴俊超.DWG</a>
-          <a href="AutoCAD/零件4.DWG" download>零件4.DWG</a>
-        </div>
+    <!-- CATIA -->
+    <div class="vitrine">
+      <div class="vitrine-header">
+        <h3>CATIA</h3>
+        <span class="count">23 件</span>
       </div>
-
-      <!-- CATIA -->
-      <div class="skill-card">
-        <div class="skill-header">
-          CATIA
-          <span class="skill-count">共 23 个文件</span>
-        </div>
-        <div class="skill-file-list">
-          <a href="CATIA/3-8.CATPart" download>3-8.CATPart</a>
-          <a href="CATIA/37.CATPart" download>37.CATPart</a>
-          <a href="CATIA/41.CATPart" download>41.CATPart</a>
-          <a href="CATIA/CX.CATPart" download>CX.CATPart</a>
-          <a href="CATIA/Part007.CATPart" download>Part007.CATPart</a>
-          <a href="CATIA/Part010.CATPart" download>Part010.CATPart</a>
-          <a href="CATIA/Part1.CATPart" download>Part1.CATPart</a>
-          <a href="CATIA/Part100.CATPart" download>Part100.CATPart</a>
-          <a href="CATIA/Part108.CATPart" download>Part108.CATPart</a>
-          <a href="CATIA/Part2.CATPart" download>Part2.CATPart</a>
-          <a href="CATIA/Part3.CATPart" download>Part3.CATPart</a>
-          <a href="CATIA/Part37.CATPart" download>Part37.CATPart</a>
-          <a href="CATIA/Part38.CATPart" download>Part38.CATPart</a>
-          <a href="CATIA/Part4.CATPart" download>Part4.CATPart</a>
-          <a href="CATIA/Part40.CATPart" download>Part40.CATPart</a>
-          <a href="CATIA/Part41.CATPart" download>Part41.CATPart</a>
-          <a href="CATIA/Part42.CATPart" download>Part42.CATPart</a>
-          <a href="CATIA/Part5daojiao.CATPart" download>Part5daojiao.CATPart</a>
-          <a href="CATIA/Part6lei.CATPart" download>Part6lei.CATPart</a>
-          <a href="CATIA/Part80.CATPart" download>Part80.CATPart</a>
-          <a href="CATIA/PartFangXingPan.CATPart" download>PartFangXingPan.CATPart</a>
-          <a href="CATIA/PartQiangTi.CATPart" download>PartQiangTi.CATPart</a>
-          <a href="CATIA/Partxiankuan.CATPart" download>Partxiankuan.CATPart</a>
-        </div>
+      <div class="vitrine-body">
+        <a href="CATIA/3-8.CATPart" download>3-8.CATPart</a>
+        <a href="CATIA/37.CATPart" download>37.CATPart</a>
+        <a href="CATIA/41.CATPart" download>41.CATPart</a>
+        <a href="CATIA/CX.CATPart" download>CX.CATPart</a>
+        <a href="CATIA/Part007.CATPart" download>Part007.CATPart</a>
+        <a href="CATIA/Part010.CATPart" download>Part010.CATPart</a>
+        <a href="CATIA/Part1.CATPart" download>Part1.CATPart</a>
+        <a href="CATIA/Part100.CATPart" download>Part100.CATPart</a>
+        <a href="CATIA/Part108.CATPart" download>Part108.CATPart</a>
+        <a href="CATIA/Part2.CATPart" download>Part2.CATPart</a>
+        <a href="CATIA/Part3.CATPart" download>Part3.CATPart</a>
+        <a href="CATIA/Part37.CATPart" download>Part37.CATPart</a>
+        <a href="CATIA/Part38.CATPart" download>Part38.CATPart</a>
+        <a href="CATIA/Part4.CATPart" download>Part4.CATPart</a>
+        <a href="CATIA/Part40.CATPart" download>Part40.CATPart</a>
+        <a href="CATIA/Part41.CATPart" download>Part41.CATPart</a>
+        <a href="CATIA/Part42.CATPart" download>Part42.CATPart</a>
+        <a href="CATIA/Part5daojiao.CATPart" download>Part5daojiao.CATPart</a>
+        <a href="CATIA/Part6lei.CATPart" download>Part6lei.CATPart</a>
+        <a href="CATIA/Part80.CATPart" download>Part80.CATPart</a>
+        <a href="CATIA/PartFangXingPan.CATPart" download>PartFangXingPan.CATPart</a>
+        <a href="CATIA/PartQiangTi.CATPart" download>PartQiangTi.CATPart</a>
+        <a href="CATIA/Partxiankuan.CATPart" download>Partxiankuan.CATPart</a>
       </div>
-
-      <!-- Solidworks -->
-      <div class="skill-card">
-        <div class="skill-header">
-          Solidworks
-          <span class="skill-count">共 100+ 个文件</span>
-        </div>
-        <div class="skill-file-list">
-          <div class="folder-label">根目录</div>
-          <a href="Solidworks/123.SLDPRT" download>123.SLDPRT</a>
-          <a href="Solidworks/m8螺栓.SLDPRT" download>m8螺栓.SLDPRT</a>
-          <a href="Solidworks/上课内容-吴俊超.SLDPRT" download>上课内容-吴俊超.SLDPRT</a>
-          <a href="Solidworks/丝杠-吴俊超.SLDPRT" download>丝杠-吴俊超.SLDPRT</a>
-          <a href="Solidworks/主动轮-吴俊超.SLDPRT" download>主动轮-吴俊超.SLDPRT</a>
-          <a href="Solidworks/传动带-吴俊超.SLDASM" download>传动带-吴俊超.SLDASM</a>
-          <a href="Solidworks/传动带-吴俊超.SLDPRT" download>传动带-吴俊超.SLDPRT</a>
-          <a href="Solidworks/传送带轮廓-吴俊超.SLDPRT" download>传送带轮廓-吴俊超.SLDPRT</a>
-          <a href="Solidworks/低速轴组件-吴俊超.SLDASM" download>低速轴组件-吴俊超.SLDASM</a>
-          <a href="Solidworks/六棱柱-吴俊超.SLDPRT" download>六棱柱-吴俊超.SLDPRT</a>
-          <a href="Solidworks/半成品-吴俊超.SLDPRT" download>半成品-吴俊超.SLDPRT</a>
-          <a href="Solidworks/叉架类模型-吴俊超.SLDPRT" download>叉架类模型-吴俊超.SLDPRT</a>
-          <a href="Solidworks/圆柱销-吴俊超.SLDPRT" download>圆柱销-吴俊超.SLDPRT</a>
-          <a href="Solidworks/圆锥销-吴俊超.SLDPRT" download>圆锥销-吴俊超.SLDPRT</a>
-          <a href="Solidworks/垫圈-吴俊超.SLDPRT" download>垫圈-吴俊超.SLDPRT</a>
-          <a href="Solidworks/塞子.SLDPRT" download>塞子.SLDPRT</a>
-          <a href="Solidworks/填料压盖.SLDPRT" download>填料压盖.SLDPRT</a>
-          <a href="Solidworks/壳体.SLDPRT" download>壳体.SLDPRT</a>
-          <a href="Solidworks/实验模型-吴俊超.SLDPRT" download>实验模型-吴俊超.SLDPRT</a>
-          <a href="Solidworks/工程图1-吴俊超.SLDDRW" download>工程图1-吴俊超.SLDDRW</a>
-          <a href="Solidworks/带轮-吴俊超.SLDPRT" download>带轮-吴俊超.SLDPRT</a>
-          <a href="Solidworks/弹簧(1)-吴俊超.SLDPRT" download>弹簧(1)-吴俊超.SLDPRT</a>
-          <a href="Solidworks/手把.SLDPRT" download>手把.SLDPRT</a>
-          <a href="Solidworks/手盘-吴俊超.SLDPRT" download>手盘-吴俊超.SLDPRT</a>
-          <a href="Solidworks/扣子-吴俊超.SLDPRT" download>扣子-吴俊超.SLDPRT</a>
-          <a href="Solidworks/拉伸弹簧-吴俊超.SLDPRT" download>拉伸弹簧-吴俊超.SLDPRT</a>
-          <a href="Solidworks/拨叉-吴俊超.SLDPRT" download>拨叉-吴俊超.SLDPRT</a>
-          <a href="Solidworks/摇臂建模-吴俊超.SLDPRT" download>摇臂建模-吴俊超.SLDPRT</a>
-          <a href="Solidworks/支架建模-吴俊超.SLDPRT" download>支架建模-吴俊超.SLDPRT</a>
-          <a href="Solidworks/斜齿轮-吴俊超.SLDPRT" download>斜齿轮-吴俊超.SLDPRT</a>
-          <a href="Solidworks/普通平键-吴俊超.SLDPRT" download>普通平键-吴俊超.SLDPRT</a>
-          <a href="Solidworks/曲柄.SLDPRT" download>曲柄.SLDPRT</a>
-          <a href="Solidworks/曲面相贯2-吴俊超.SLDPRT" download>曲面相贯2-吴俊超.SLDPRT</a>
-          <a href="Solidworks/机架.SLDPRT" download>机架.SLDPRT</a>
-          <a href="Solidworks/杠铃-吴俊超.SLDDRW" download>杠铃-吴俊超.SLDDRW</a>
-          <a href="Solidworks/杠铃杆-吴俊超.SLDPRT" download>杠铃杆-吴俊超.SLDPRT</a>
-          <a href="Solidworks/杠铃片-吴俊超.SLDPRT" download>杠铃片-吴俊超.SLDPRT</a>
-          <a href="Solidworks/柱塞套-吴俊超.SLDPRT" download>柱塞套-吴俊超.SLDPRT</a>
-          <a href="Solidworks/案例草图-吴俊超.SLDPRT" download>案例草图-吴俊超.SLDPRT</a>
-          <a href="Solidworks/法兰盘1-吴俊超.SLDDRW" download>法兰盘1-吴俊超.SLDDRW</a>
-          <a href="Solidworks/法兰盘1-吴俊超.SLDPRT" download>法兰盘1-吴俊超.SLDPRT</a>
-          <a href="Solidworks/滑块.SLDPRT" download>滑块.SLDPRT</a>
-          <a href="Solidworks/瓶子-吴俊超.SLDPRT" download>瓶子-吴俊超.SLDPRT</a>
-          <a href="Solidworks/短轴-吴俊超.SLDPRT" download>短轴-吴俊超.SLDPRT</a>
-          <a href="Solidworks/端盖-吴俊超.SLDPRT" download>端盖-吴俊超.SLDPRT</a>
-          <a href="Solidworks/筋-吴俊超.SLDPRT" download>筋-吴俊超.SLDPRT</a>
-          <a href="Solidworks/练习1-吴俊超.SLDPRT" download>练习1-吴俊超.SLDPRT</a>
-          <a href="Solidworks/练习2-吴俊超.SLDPRT" download>练习2-吴俊超.SLDPRT</a>
-          <a href="Solidworks/练习3-吴俊超.SLDPRT" download>练习3-吴俊超.SLDPRT</a>
-          <a href="Solidworks/练习4-吴俊超.SLDPRT" download>练习4-吴俊超.SLDPRT</a>
-          <a href="Solidworks/考试11-吴俊超.SLDPRT" download>考试11-吴俊超.SLDPRT</a>
-          <a href="Solidworks/考试111-吴俊超.SLDPRT" download>考试111-吴俊超.SLDPRT</a>
-          <a href="Solidworks/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
-          <a href="Solidworks/考试2-吴俊超.SLDPRT" download>考试2-吴俊超.SLDPRT</a>
-          <a href="Solidworks/考试22-吴俊超.SLDPRT" download>考试22-吴俊超.SLDPRT</a>
-          <a href="Solidworks/胡乱建模2-吴俊超.SLDPRT" download>胡乱建模2-吴俊超.SLDPRT</a>
-          <a href="Solidworks/胡乱构造-吴俊超.SLDPRT" download>胡乱构造-吴俊超.SLDPRT</a>
-          <a href="Solidworks/茶壶-吴俊超.SLDPRT" download>茶壶-吴俊超.SLDPRT</a>
-          <a href="Solidworks/草图-吴俊超.SLDPRT" download>草图-吴俊超.SLDPRT</a>
-          <a href="Solidworks/螺栓联结-吴俊超.SLDASM" download>螺栓联结-吴俊超.SLDASM</a>
-          <a href="Solidworks/螺栓联结-吴俊超.SLDDRW" download>螺栓联结-吴俊超.SLDDRW</a>
-          <a href="Solidworks/螺栓联结-吴俊超1.SLDDRW" download>螺栓联结-吴俊超1.SLDDRW</a>
-          <a href="Solidworks/螺纹连接件-吴俊超.SLDPRT" download>螺纹连接件-吴俊超.SLDPRT</a>
-          <a href="Solidworks/螺纹连接件（半成品）-吴俊超.SLDPRT" download>螺纹连接件（半成品）-吴俊超.SLDPRT</a>
-          <a href="Solidworks/螺钉-吴俊超.SLDPRT" download>螺钉-吴俊超.SLDPRT</a>
-          <a href="Solidworks/被动轮-吴俊超.SLDASM" download>被动轮-吴俊超.SLDASM</a>
-          <a href="Solidworks/装配体1.....SLDASM" download>装配体1.....SLDASM</a>
-          <a href="Solidworks/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
-          <a href="Solidworks/装配体6-吴俊超.SLDASM" download>装配体6-吴俊超.SLDASM</a>
-          <a href="Solidworks/装配体6-吴俊超.SLDDRW" download>装配体6-吴俊超.SLDDRW</a>
-          <a href="Solidworks/课堂案例-吴俊超.SLDPRT" download>课堂案例-吴俊超.SLDPRT</a>
-          <a href="Solidworks/课堂案例1-吴俊超.SLDASM" download>课堂案例1-吴俊超.SLDASM</a>
-          <a href="Solidworks/车辆零件-吴俊超.SLDPRT" download>车辆零件-吴俊超.SLDPRT</a>
-          <a href="Solidworks/连接法兰盘-吴俊超.SLDPRT" download>连接法兰盘-吴俊超.SLDPRT</a>
-          <a href="Solidworks/连杆.SLDPRT" download>连杆.SLDPRT</a>
-          <a href="Solidworks/连杆建模-吴俊超.SLDPRT" download>连杆建模-吴俊超.SLDPRT</a>
-          <a href="Solidworks/零件-吴俊超.SLDPRT" download>零件-吴俊超.SLDPRT</a>
-          <a href="Solidworks/零件0.SLDPRT" download>零件0.SLDPRT</a>
-          <a href="Solidworks/零件1-吴俊超.SLDDRW" download>零件1-吴俊超.SLDDRW</a>
-          <a href="Solidworks/零件1-吴俊超.SLDPRT" download>零件1-吴俊超.SLDPRT</a>
-          <a href="Solidworks/零件2.SLDPRT" download>零件2.SLDPRT</a>
-          <a href="Solidworks/零件3.SLDPRT" download>零件3.SLDPRT</a>
-          <a href="Solidworks/零件31.SLDPRT" download>零件31.SLDPRT</a>
-          <a href="Solidworks/零件32.SLDPRT" download>零件32.SLDPRT</a>
-          <a href="Solidworks/零件4.SLDPRT" download>零件4.SLDPRT</a>
-          <a href="Solidworks/零件4shouji.SLDPRT" download>零件4shouji.SLDPRT</a>
-          <a href="Solidworks/零件4shouji1.SLDPRT" download>零件4shouji1.SLDPRT</a>
-          <a href="Solidworks/零件5.SLDPRT" download>零件5.SLDPRT</a>
-          <a href="Solidworks/零件6.SLDDRW" download>零件6.SLDDRW</a>
-          <a href="Solidworks/零件6.SLDPRT" download>零件6.SLDPRT</a>
-          <a href="Solidworks/零件7.SLDPRT" download>零件7.SLDPRT</a>
-          <a href="Solidworks/零件8.SLDPRT" download>零件8.SLDPRT</a>
-          <a href="Solidworks/齿轮-吴俊超.SLDPRT" download>齿轮-吴俊超.SLDPRT</a>
-          <a href="Solidworks/齿轮2-吴俊超.SLDPRT" download>齿轮2-吴俊超.SLDPRT</a>
-
-          <div class="folder-label">减速器</div>
-          <a href="Solidworks/减速器/上箱盖.SLDPRT" download>上箱盖.SLDPRT</a>
-          <a href="Solidworks/减速器/下箱体.SLDPRT" download>下箱体.SLDPRT</a>
-          <a href="Solidworks/减速器/减速器装配-吴俊超.SLDASM" download>减速器装配-吴俊超.SLDASM</a>
-          <a href="Solidworks/减速器/大垫片.SLDPRT" download>大垫片.SLDPRT</a>
-          <a href="Solidworks/减速器/大端盖.SLDPRT" download>大端盖.SLDPRT</a>
-          <a href="Solidworks/减速器/大通盖.SLDPRT" download>大通盖.SLDPRT</a>
-          <a href="Solidworks/减速器/小垫片.SLDPRT" download>小垫片.SLDPRT</a>
-          <a href="Solidworks/减速器/小端盖.SLDPRT" download>小端盖.SLDPRT</a>
-          <a href="Solidworks/减速器/小通盖.SLDPRT" download>小通盖.SLDPRT</a>
-          <a href="Solidworks/减速器/端盖.SLDPRT" download>端盖.SLDPRT</a>
-          <a href="Solidworks/减速器/螺塞.SLDPRT" download>螺塞.SLDPRT</a>
-          <a href="Solidworks/减速器/螺栓M20.SLDPRT" download>螺栓M20.SLDPRT</a>
-          <a href="Solidworks/减速器/螺栓M36.SLDPRT" download>螺栓M36.SLDPRT</a>
-          <a href="Solidworks/减速器/螺栓M36X100.SLDPRT" download>螺栓M36X100.SLDPRT</a>
-          <a href="Solidworks/减速器/螺母M20×2.5.SLDPRT" download>螺母M20×2.5.SLDPRT</a>
-          <a href="Solidworks/减速器/螺母M36×4.0.sldprt" download>螺母M36×4.0.sldprt</a>
-          <a href="Solidworks/减速器/通气塞.SLDPRT" download>通气塞.SLDPRT</a>
-
-          <div class="folder-label">减速器/高速轴组件</div>
-          <a href="Solidworks/减速器/高速轴组件/减速器总装配1-吴俊超.SLDASM" download>减速器总装配1-吴俊超.SLDASM</a>
-          <a href="Solidworks/减速器/高速轴组件/小齿轮.SLDPRT" download>小齿轮.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴.SLDPRT" download>高速轴.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴套筒.SLDPRT" download>高速轴套筒.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴组件.SLDASM" download>高速轴组件.SLDASM</a>
-          <a href="Solidworks/减速器/高速轴组件/高速键.SLDPRT" download>高速键.SLDPRT</a>
-
-          <div class="folder-label">减速器/高速轴组件/高速轴轴承</div>
-          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承.SLDASM" download>高速轴轴承.SLDASM</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承保持架.SLDPRT" download>高速轴轴承保持架.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承外圈.SLDPRT" download>高速轴轴承外圈.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠.SLDPRT" download>高速轴轴承滚珠.SLDPRT</a>
-          <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠装配体.SLDASM" download>高速轴轴承滚珠装配体.SLDASM</a>
-
-          <div class="folder-label">减速器/低速轴组件</div>
-          <a href="Solidworks/减速器/低速轴组件/低速轴.SLDPRT" download>低速轴.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/低速键.SLDPRT" download>低速键.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/半成品2.SLDPRT" download>半成品2.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/大齿轮.SLDPRT" download>大齿轮.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/套筒.SLDPRT" download>套筒.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/涡轮减速器-吴俊超.SLDPRT" download>涡轮减速器-吴俊超.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
-          <a href="Solidworks/减速器/低速轴组件/齿轮片-吴俊超.SLDPRT" download>齿轮片-吴俊超.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/齿轮箱体-吴俊超.SLDPRT" download>齿轮箱体-吴俊超.SLDPRT</a>
-
-          <div class="folder-label">减速器/低速轴组件/低速轴轴承</div>
-          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承.SLDASM" download>低速轴轴承.SLDASM</a>
-          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承保持架.SLDPRT" download>低速轴轴承保持架.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承外圈.SLDPRT" download>低速轴轴承外圈.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠.SLDPRT" download>低速轴轴承滚珠.SLDPRT</a>
-          <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠装配体.SLDASM" download>低速轴轴承滚珠装配体.SLDASM</a>
-
-          <div class="folder-label">单缸活塞机构</div>
-          <a href="Solidworks/单缸活塞机构/单缸活塞装配.SLDASM" download>单缸活塞装配.SLDASM</a>
-          <a href="Solidworks/单缸活塞机构/支撑.SLDPRT" download>支撑.SLDPRT</a>
-          <a href="Solidworks/单缸活塞机构/曲轴.SLDPRT" download>曲轴.SLDPRT</a>
-          <a href="Solidworks/单缸活塞机构/气缸体.SLDPRT" download>气缸体.SLDPRT</a>
-          <a href="Solidworks/单缸活塞机构/活塞.SLDPRT" download>活塞.SLDPRT</a>
-          <a href="Solidworks/单缸活塞机构/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
-          <a href="Solidworks/单缸活塞机构/装配体5半成品.SLDASM" download>装配体5半成品.SLDASM</a>
-          <a href="Solidworks/单缸活塞机构/连杆.SLDPRT" download>连杆.SLDPRT</a>
-
-          <div class="folder-label">液压夹具体</div>
-          <a href="Solidworks/液压夹具体/Axe.SLDPRT" download>Axe.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Cache en plastique.SLDPRT" download>Cache en plastique.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Corps.SLDPRT" download>Corps.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Joint torique.SLDPRT" download>Joint torique.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Levier.SLDPRT" download>Levier.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Piston Hgd.SLDPRT" download>Piston Hgd.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/Piston.SLDPRT" download>Piston.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/couvercle.SLDPRT" download>couvercle.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/fond.SLDPRT" download>fond.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/joint de piston.SLDPRT" download>joint de piston.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/mors.SLDPRT" download>mors.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/petit joint de piston.SLDPRT" download>petit joint de piston.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/pince type HGD.SLDASM" download>pince type HGD.SLDASM</a>
-          <a href="Solidworks/液压夹具体/piston et joints.SLDASM" download>piston et joints.SLDASM</a>
-          <a href="Solidworks/液压夹具体/segment magnetique.SLDPRT" download>segment magnetique.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/拉伸切除控制零件.SLDPRT" download>拉伸切除控制零件.SLDPRT</a>
-          <a href="Solidworks/液压夹具体/液压夹具体.SLDASM" download>液压夹具体.SLDASM</a>
-
-          <div class="folder-label">螺栓联接</div>
-          <a href="Solidworks/螺栓联接/20弹簧垫片.sldprt" download>20弹簧垫片.sldprt</a>
-          <a href="Solidworks/螺栓联接/M20×90螺栓.sldprt" download>M20×90螺栓.sldprt</a>
-          <a href="Solidworks/螺栓联接/M20螺母.sldprt" download>M20螺母.sldprt</a>
-          <a href="Solidworks/螺栓联接/盖板.SLDPRT" download>盖板.SLDPRT</a>
-          <a href="Solidworks/螺栓联接/缸体.SLDPRT" download>缸体.SLDPRT</a>
-
-          <div class="folder-label">齿轮配合装配</div>
-          <a href="Solidworks/齿轮配合装配/m0.6z23.SLDPRT" download>m0.6z23.SLDPRT</a>
-          <a href="Solidworks/齿轮配合装配/m0.6z29.SLDPRT" download>m0.6z29.SLDPRT</a>
-          <a href="Solidworks/齿轮配合装配/大齿轮轴.SLDPRT" download>大齿轮轴.SLDPRT</a>
-          <a href="Solidworks/齿轮配合装配/小齿轮轴.SLDPRT" download>小齿轮轴.SLDPRT</a>
-          <a href="Solidworks/齿轮配合装配/薄壁测板.SLDPRT" download>薄壁测板.SLDPRT</a>
-        </div>
-      </div>
-
     </div>
-  </section>
-</main>
 
-<footer>
-  <div class="footer-ornament">
-    <span></span><i></i><span></span>
+    <!-- Solidworks -->
+    <div class="vitrine">
+      <div class="vitrine-header">
+        <h3>Solidworks</h3>
+        <span class="count">100+ 件</span>
+      </div>
+      <div class="vitrine-body">
+        <div class="vitrine-folder">根目录</div>
+        <a href="Solidworks/123.SLDPRT" download>123.SLDPRT</a>
+        <a href="Solidworks/m8螺栓.SLDPRT" download>m8螺栓.SLDPRT</a>
+        <a href="Solidworks/上课内容-吴俊超.SLDPRT" download>上课内容-吴俊超.SLDPRT</a>
+        <a href="Solidworks/丝杠-吴俊超.SLDPRT" download>丝杠-吴俊超.SLDPRT</a>
+        <a href="Solidworks/主动轮-吴俊超.SLDPRT" download>主动轮-吴俊超.SLDPRT</a>
+        <a href="Solidworks/传动带-吴俊超.SLDASM" download>传动带-吴俊超.SLDASM</a>
+        <a href="Solidworks/传动带-吴俊超.SLDPRT" download>传动带-吴俊超.SLDPRT</a>
+        <a href="Solidworks/传送带轮廓-吴俊超.SLDPRT" download>传送带轮廓-吴俊超.SLDPRT</a>
+        <a href="Solidworks/低速轴组件-吴俊超.SLDASM" download>低速轴组件-吴俊超.SLDASM</a>
+        <a href="Solidworks/六棱柱-吴俊超.SLDPRT" download>六棱柱-吴俊超.SLDPRT</a>
+        <a href="Solidworks/半成品-吴俊超.SLDPRT" download>半成品-吴俊超.SLDPRT</a>
+        <a href="Solidworks/叉架类模型-吴俊超.SLDPRT" download>叉架类模型-吴俊超.SLDPRT</a>
+        <a href="Solidworks/圆柱销-吴俊超.SLDPRT" download>圆柱销-吴俊超.SLDPRT</a>
+        <a href="Solidworks/圆锥销-吴俊超.SLDPRT" download>圆锥销-吴俊超.SLDPRT</a>
+        <a href="Solidworks/垫圈-吴俊超.SLDPRT" download>垫圈-吴俊超.SLDPRT</a>
+        <a href="Solidworks/塞子.SLDPRT" download>塞子.SLDPRT</a>
+        <a href="Solidworks/填料压盖.SLDPRT" download>填料压盖.SLDPRT</a>
+        <a href="Solidworks/壳体.SLDPRT" download>壳体.SLDPRT</a>
+        <a href="Solidworks/实验模型-吴俊超.SLDPRT" download>实验模型-吴俊超.SLDPRT</a>
+        <a href="Solidworks/工程图1-吴俊超.SLDDRW" download>工程图1-吴俊超.SLDDRW</a>
+        <a href="Solidworks/带轮-吴俊超.SLDPRT" download>带轮-吴俊超.SLDPRT</a>
+        <a href="Solidworks/弹簧(1)-吴俊超.SLDPRT" download>弹簧(1)-吴俊超.SLDPRT</a>
+        <a href="Solidworks/手把.SLDPRT" download>手把.SLDPRT</a>
+        <a href="Solidworks/手盘-吴俊超.SLDPRT" download>手盘-吴俊超.SLDPRT</a>
+        <a href="Solidworks/扣子-吴俊超.SLDPRT" download>扣子-吴俊超.SLDPRT</a>
+        <a href="Solidworks/拉伸弹簧-吴俊超.SLDPRT" download>拉伸弹簧-吴俊超.SLDPRT</a>
+        <a href="Solidworks/拨叉-吴俊超.SLDPRT" download>拨叉-吴俊超.SLDPRT</a>
+        <a href="Solidworks/摇臂建模-吴俊超.SLDPRT" download>摇臂建模-吴俊超.SLDPRT</a>
+        <a href="Solidworks/支架建模-吴俊超.SLDPRT" download>支架建模-吴俊超.SLDPRT</a>
+        <a href="Solidworks/斜齿轮-吴俊超.SLDPRT" download>斜齿轮-吴俊超.SLDPRT</a>
+        <a href="Solidworks/普通平键-吴俊超.SLDPRT" download>普通平键-吴俊超.SLDPRT</a>
+        <a href="Solidworks/曲柄.SLDPRT" download>曲柄.SLDPRT</a>
+        <a href="Solidworks/曲面相贯2-吴俊超.SLDPRT" download>曲面相贯2-吴俊超.SLDPRT</a>
+        <a href="Solidworks/机架.SLDPRT" download>机架.SLDPRT</a>
+        <a href="Solidworks/杠铃-吴俊超.SLDDRW" download>杠铃-吴俊超.SLDDRW</a>
+        <a href="Solidworks/杠铃杆-吴俊超.SLDPRT" download>杠铃杆-吴俊超.SLDPRT</a>
+        <a href="Solidworks/杠铃片-吴俊超.SLDPRT" download>杠铃片-吴俊超.SLDPRT</a>
+        <a href="Solidworks/柱塞套-吴俊超.SLDPRT" download>柱塞套-吴俊超.SLDPRT</a>
+        <a href="Solidworks/案例草图-吴俊超.SLDPRT" download>案例草图-吴俊超.SLDPRT</a>
+        <a href="Solidworks/法兰盘1-吴俊超.SLDDRW" download>法兰盘1-吴俊超.SLDDRW</a>
+        <a href="Solidworks/法兰盘1-吴俊超.SLDPRT" download>法兰盘1-吴俊超.SLDPRT</a>
+        <a href="Solidworks/滑块.SLDPRT" download>滑块.SLDPRT</a>
+        <a href="Solidworks/瓶子-吴俊超.SLDPRT" download>瓶子-吴俊超.SLDPRT</a>
+        <a href="Solidworks/短轴-吴俊超.SLDPRT" download>短轴-吴俊超.SLDPRT</a>
+        <a href="Solidworks/端盖-吴俊超.SLDPRT" download>端盖-吴俊超.SLDPRT</a>
+        <a href="Solidworks/筋-吴俊超.SLDPRT" download>筋-吴俊超.SLDPRT</a>
+        <a href="Solidworks/练习1-吴俊超.SLDPRT" download>练习1-吴俊超.SLDPRT</a>
+        <a href="Solidworks/练习2-吴俊超.SLDPRT" download>练习2-吴俊超.SLDPRT</a>
+        <a href="Solidworks/练习3-吴俊超.SLDPRT" download>练习3-吴俊超.SLDPRT</a>
+        <a href="Solidworks/练习4-吴俊超.SLDPRT" download>练习4-吴俊超.SLDPRT</a>
+        <a href="Solidworks/考试11-吴俊超.SLDPRT" download>考试11-吴俊超.SLDPRT</a>
+        <a href="Solidworks/考试111-吴俊超.SLDPRT" download>考试111-吴俊超.SLDPRT</a>
+        <a href="Solidworks/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
+        <a href="Solidworks/考试2-吴俊超.SLDPRT" download>考试2-吴俊超.SLDPRT</a>
+        <a href="Solidworks/考试22-吴俊超.SLDPRT" download>考试22-吴俊超.SLDPRT</a>
+        <a href="Solidworks/胡乱建模2-吴俊超.SLDPRT" download>胡乱建模2-吴俊超.SLDPRT</a>
+        <a href="Solidworks/胡乱构造-吴俊超.SLDPRT" download>胡乱构造-吴俊超.SLDPRT</a>
+        <a href="Solidworks/茶壶-吴俊超.SLDPRT" download>茶壶-吴俊超.SLDPRT</a>
+        <a href="Solidworks/草图-吴俊超.SLDPRT" download>草图-吴俊超.SLDPRT</a>
+        <a href="Solidworks/螺栓联结-吴俊超.SLDASM" download>螺栓联结-吴俊超.SLDASM</a>
+        <a href="Solidworks/螺栓联结-吴俊超.SLDDRW" download>螺栓联结-吴俊超.SLDDRW</a>
+        <a href="Solidworks/螺栓联结-吴俊超1.SLDDRW" download>螺栓联结-吴俊超1.SLDDRW</a>
+        <a href="Solidworks/螺纹连接件-吴俊超.SLDPRT" download>螺纹连接件-吴俊超.SLDPRT</a>
+        <a href="Solidworks/螺纹连接件（半成品）-吴俊超.SLDPRT" download>螺纹连接件（半成品）-吴俊超.SLDPRT</a>
+        <a href="Solidworks/螺钉-吴俊超.SLDPRT" download>螺钉-吴俊超.SLDPRT</a>
+        <a href="Solidworks/被动轮-吴俊超.SLDASM" download>被动轮-吴俊超.SLDASM</a>
+        <a href="Solidworks/装配体1.....SLDASM" download>装配体1.....SLDASM</a>
+        <a href="Solidworks/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
+        <a href="Solidworks/装配体6-吴俊超.SLDASM" download>装配体6-吴俊超.SLDASM</a>
+        <a href="Solidworks/装配体6-吴俊超.SLDDRW" download>装配体6-吴俊超.SLDDRW</a>
+        <a href="Solidworks/课堂案例-吴俊超.SLDPRT" download>课堂案例-吴俊超.SLDPRT</a>
+        <a href="Solidworks/课堂案例1-吴俊超.SLDASM" download>课堂案例1-吴俊超.SLDASM</a>
+        <a href="Solidworks/车辆零件-吴俊超.SLDPRT" download>车辆零件-吴俊超.SLDPRT</a>
+        <a href="Solidworks/连接法兰盘-吴俊超.SLDPRT" download>连接法兰盘-吴俊超.SLDPRT</a>
+        <a href="Solidworks/连杆.SLDPRT" download>连杆.SLDPRT</a>
+        <a href="Solidworks/连杆建模-吴俊超.SLDPRT" download>连杆建模-吴俊超.SLDPRT</a>
+        <a href="Solidworks/零件-吴俊超.SLDPRT" download>零件-吴俊超.SLDPRT</a>
+        <a href="Solidworks/零件0.SLDPRT" download>零件0.SLDPRT</a>
+        <a href="Solidworks/零件1-吴俊超.SLDDRW" download>零件1-吴俊超.SLDDRW</a>
+        <a href="Solidworks/零件1-吴俊超.SLDPRT" download>零件1-吴俊超.SLDPRT</a>
+        <a href="Solidworks/零件2.SLDPRT" download>零件2.SLDPRT</a>
+        <a href="Solidworks/零件3.SLDPRT" download>零件3.SLDPRT</a>
+        <a href="Solidworks/零件31.SLDPRT" download>零件31.SLDPRT</a>
+        <a href="Solidworks/零件32.SLDPRT" download>零件32.SLDPRT</a>
+        <a href="Solidworks/零件4.SLDPRT" download>零件4.SLDPRT</a>
+        <a href="Solidworks/零件4shouji.SLDPRT" download>零件4shouji.SLDPRT</a>
+        <a href="Solidworks/零件4shouji1.SLDPRT" download>零件4shouji1.SLDPRT</a>
+        <a href="Solidworks/零件5.SLDPRT" download>零件5.SLDPRT</a>
+        <a href="Solidworks/零件6.SLDDRW" download>零件6.SLDDRW</a>
+        <a href="Solidworks/零件6.SLDPRT" download>零件6.SLDPRT</a>
+        <a href="Solidworks/零件7.SLDPRT" download>零件7.SLDPRT</a>
+        <a href="Solidworks/零件8.SLDPRT" download>零件8.SLDPRT</a>
+        <a href="Solidworks/齿轮-吴俊超.SLDPRT" download>齿轮-吴俊超.SLDPRT</a>
+        <a href="Solidworks/齿轮2-吴俊超.SLDPRT" download>齿轮2-吴俊超.SLDPRT</a>
+
+        <div class="vitrine-folder">减速器</div>
+        <a href="Solidworks/减速器/上箱盖.SLDPRT" download>上箱盖.SLDPRT</a>
+        <a href="Solidworks/减速器/下箱体.SLDPRT" download>下箱体.SLDPRT</a>
+        <a href="Solidworks/减速器/减速器装配-吴俊超.SLDASM" download>减速器装配-吴俊超.SLDASM</a>
+        <a href="Solidworks/减速器/大垫片.SLDPRT" download>大垫片.SLDPRT</a>
+        <a href="Solidworks/减速器/大端盖.SLDPRT" download>大端盖.SLDPRT</a>
+        <a href="Solidworks/减速器/大通盖.SLDPRT" download>大通盖.SLDPRT</a>
+        <a href="Solidworks/减速器/小垫片.SLDPRT" download>小垫片.SLDPRT</a>
+        <a href="Solidworks/减速器/小端盖.SLDPRT" download>小端盖.SLDPRT</a>
+        <a href="Solidworks/减速器/小通盖.SLDPRT" download>小通盖.SLDPRT</a>
+        <a href="Solidworks/减速器/端盖.SLDPRT" download>端盖.SLDPRT</a>
+        <a href="Solidworks/减速器/螺塞.SLDPRT" download>螺塞.SLDPRT</a>
+        <a href="Solidworks/减速器/螺栓M20.SLDPRT" download>螺栓M20.SLDPRT</a>
+        <a href="Solidworks/减速器/螺栓M36.SLDPRT" download>螺栓M36.SLDPRT</a>
+        <a href="Solidworks/减速器/螺栓M36X100.SLDPRT" download>螺栓M36X100.SLDPRT</a>
+        <a href="Solidworks/减速器/螺母M20×2.5.SLDPRT" download>螺母M20×2.5.SLDPRT</a>
+        <a href="Solidworks/减速器/螺母M36×4.0.sldprt" download>螺母M36×4.0.sldprt</a>
+        <a href="Solidworks/减速器/通气塞.SLDPRT" download>通气塞.SLDPRT</a>
+
+        <div class="vitrine-folder">减速器 / 高速轴组件</div>
+        <a href="Solidworks/减速器/高速轴组件/减速器总装配1-吴俊超.SLDASM" download>减速器总装配1-吴俊超.SLDASM</a>
+        <a href="Solidworks/减速器/高速轴组件/小齿轮.SLDPRT" download>小齿轮.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴.SLDPRT" download>高速轴.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴套筒.SLDPRT" download>高速轴套筒.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴组件.SLDASM" download>高速轴组件.SLDASM</a>
+        <a href="Solidworks/减速器/高速轴组件/高速键.SLDPRT" download>高速键.SLDPRT</a>
+
+        <div class="vitrine-folder">减速器 / 高速轴组件 / 高速轴轴承</div>
+        <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承.SLDASM" download>高速轴轴承.SLDASM</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承保持架.SLDPRT" download>高速轴轴承保持架.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承外圈.SLDPRT" download>高速轴轴承外圈.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠.SLDPRT" download>高速轴轴承滚珠.SLDPRT</a>
+        <a href="Solidworks/减速器/高速轴组件/高速轴轴承/高速轴轴承滚珠装配体.SLDASM" download>高速轴轴承滚珠装配体.SLDASM</a>
+
+        <div class="vitrine-folder">减速器 / 低速轴组件</div>
+        <a href="Solidworks/减速器/低速轴组件/低速轴.SLDPRT" download>低速轴.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/低速键.SLDPRT" download>低速键.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/半成品2.SLDPRT" download>半成品2.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/大齿轮.SLDPRT" download>大齿轮.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/套筒.SLDPRT" download>套筒.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/涡轮减速器-吴俊超.SLDPRT" download>涡轮减速器-吴俊超.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/装配体2吴俊超.SLDASM" download>装配体2吴俊超.SLDASM</a>
+        <a href="Solidworks/减速器/低速轴组件/齿轮片-吴俊超.SLDPRT" download>齿轮片-吴俊超.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/齿轮箱体-吴俊超.SLDPRT" download>齿轮箱体-吴俊超.SLDPRT</a>
+
+        <div class="vitrine-folder">减速器 / 低速轴组件 / 低速轴轴承</div>
+        <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承.SLDASM" download>低速轴轴承.SLDASM</a>
+        <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承保持架.SLDPRT" download>低速轴轴承保持架.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承外圈.SLDPRT" download>低速轴轴承外圈.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠.SLDPRT" download>低速轴轴承滚珠.SLDPRT</a>
+        <a href="Solidworks/减速器/低速轴组件/低速轴轴承/低速轴轴承滚珠装配体.SLDASM" download>低速轴轴承滚珠装配体.SLDASM</a>
+
+        <div class="vitrine-folder">单缸活塞机构</div>
+        <a href="Solidworks/单缸活塞机构/单缸活塞装配.SLDASM" download>单缸活塞装配.SLDASM</a>
+        <a href="Solidworks/单缸活塞机构/支撑.SLDPRT" download>支撑.SLDPRT</a>
+        <a href="Solidworks/单缸活塞机构/曲轴.SLDPRT" download>曲轴.SLDPRT</a>
+        <a href="Solidworks/单缸活塞机构/气缸体.SLDPRT" download>气缸体.SLDPRT</a>
+        <a href="Solidworks/单缸活塞机构/活塞.SLDPRT" download>活塞.SLDPRT</a>
+        <a href="Solidworks/单缸活塞机构/考试1111-吴俊超.SLDPRT" download>考试1111-吴俊超.SLDPRT</a>
+        <a href="Solidworks/单缸活塞机构/装配体5半成品.SLDASM" download>装配体5半成品.SLDASM</a>
+        <a href="Solidworks/单缸活塞机构/连杆.SLDPRT" download>连杆.SLDPRT</a>
+
+        <div class="vitrine-folder">液压夹具体</div>
+        <a href="Solidworks/液压夹具体/Axe.SLDPRT" download>Axe.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Cache en plastique.SLDPRT" download>Cache en plastique.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Corps.SLDPRT" download>Corps.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Joint torique.SLDPRT" download>Joint torique.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Levier.SLDPRT" download>Levier.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Piston Hgd.SLDPRT" download>Piston Hgd.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/Piston.SLDPRT" download>Piston.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/couvercle.SLDPRT" download>couvercle.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/fond.SLDPRT" download>fond.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/joint de piston.SLDPRT" download>joint de piston.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/mors.SLDPRT" download>mors.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/petit joint de piston.SLDPRT" download>petit joint de piston.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/pince type HGD.SLDASM" download>pince type HGD.SLDASM</a>
+        <a href="Solidworks/液压夹具体/piston et joints.SLDASM" download>piston et joints.SLDASM</a>
+        <a href="Solidworks/液压夹具体/segment magnetique.SLDPRT" download>segment magnetique.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/拉伸切除控制零件.SLDPRT" download>拉伸切除控制零件.SLDPRT</a>
+        <a href="Solidworks/液压夹具体/液压夹具体.SLDASM" download>液压夹具体.SLDASM</a>
+
+        <div class="vitrine-folder">螺栓联接</div>
+        <a href="Solidworks/螺栓联接/20弹簧垫片.sldprt" download>20弹簧垫片.sldprt</a>
+        <a href="Solidworks/螺栓联接/M20×90螺栓.sldprt" download>M20×90螺栓.sldprt</a>
+        <a href="Solidworks/螺栓联接/M20螺母.sldprt" download>M20螺母.sldprt</a>
+        <a href="Solidworks/螺栓联接/盖板.SLDPRT" download>盖板.SLDPRT</a>
+        <a href="Solidworks/螺栓联接/缸体.SLDPRT" download>缸体.SLDPRT</a>
+
+        <div class="vitrine-folder">齿轮配合装配</div>
+        <a href="Solidworks/齿轮配合装配/m0.6z23.SLDPRT" download>m0.6z23.SLDPRT</a>
+        <a href="Solidworks/齿轮配合装配/m0.6z29.SLDPRT" download>m0.6z29.SLDPRT</a>
+        <a href="Solidworks/齿轮配合装配/大齿轮轴.SLDPRT" download>大齿轮轴.SLDPRT</a>
+        <a href="Solidworks/齿轮配合装配/小齿轮轴.SLDPRT" download>小齿轮轴.SLDPRT</a>
+        <a href="Solidworks/齿轮配合装配/薄壁测板.SLDPRT" download>薄壁测板.SLDPRT</a>
+      </div>
+    </div>
   </div>
-  <p>© 2026 吴俊超 &mdash; 材料证明小屋 | 所有材料真实有效</p>
+</section>
+
+<footer class="gallery-footer">
+  <div class="f-ornament"><span></span><i></i><span></span></div>
+  <p>© 2026 吴俊超 · 材料证明数字展馆 &nbsp;|&nbsp; 所有材料真实有效</p>
 </footer>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">×</button>
-  <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">‹</button>
-  <img class="lightbox-content" id="lightbox-img" alt="">
-  <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">›</button>
-  <div class="lightbox-counter" id="lightbox-counter"></div>
+<!-- Viewing Room (Lightbox) -->
+<div class="viewing-room" id="viewingRoom" onclick="closeViewingRoom(event)">
+  <button class="vr-close" onclick="closeViewingRoom()">×</button>
+  <button class="vr-nav vr-prev" onclick="changeView(-1)">‹</button>
+  <img class="vr-content" id="vrImage" alt="">
+  <button class="vr-nav vr-next" onclick="changeView(1)">›</button>
+  <div class="vr-counter" id="vrCounter"></div>
 </div>
 
 <script>
-const images = [
+const exhibitImages = [
   "1193a5b8a266cd8c96aeae2e65bff04d.jpg",
   "6a27b51c157f8b76ea7c345851a469e9.jpg",
   "921244316addf835d39cf58a52ff25fd.jpg",
@@ -1458,76 +1285,89 @@ const images = [
   "f9d15baf3b11c1e6b17efbd02a0b24e8.jpg"
 ];
 
-let currentIndex = 0;
+let vrIndex = 0;
 
-function openLightbox(index) {
-  currentIndex = index;
-  const lb = document.getElementById('lightbox');
-  const img = document.getElementById('lightbox-img');
-  img.src = images[currentIndex];
-  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + images.length;
-  lb.classList.add('active');
+function openViewingRoom(index) {
+  vrIndex = index;
+  const room = document.getElementById('viewingRoom');
+  document.getElementById('vrImage').src = exhibitImages[vrIndex];
+  document.getElementById('vrCounter').textContent = (vrIndex + 1) + ' / ' + exhibitImages.length;
+  room.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function closeLightbox(e) {
+function closeViewingRoom(e) {
   if (e && e.target !== e.currentTarget) return;
-  document.getElementById('lightbox').classList.remove('active');
+  document.getElementById('viewingRoom').classList.remove('active');
   document.body.style.overflow = '';
 }
 
-function changeImage(dir) {
-  currentIndex = (currentIndex + dir + images.length) % images.length;
-  const img = document.getElementById('lightbox-img');
-  img.src = images[currentIndex];
-  document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + images.length;
+function changeView(dir) {
+  vrIndex = (vrIndex + dir + exhibitImages.length) % exhibitImages.length;
+  document.getElementById('vrImage').src = exhibitImages[vrIndex];
+  document.getElementById('vrCounter').textContent = (vrIndex + 1) + ' / ' + exhibitImages.length;
 }
 
 document.addEventListener('keydown', function(e) {
-  const lb = document.getElementById('lightbox');
-  if (!lb.classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') changeImage(-1);
-  if (e.key === 'ArrowRight') changeImage(1);
+  const room = document.getElementById('viewingRoom');
+  if (!room.classList.contains('active')) return;
+  if (e.key === 'Escape') closeViewingRoom();
+  if (e.key === 'ArrowLeft') changeView(-1);
+  if (e.key === 'ArrowRight') changeView(1);
 });
 
-// ===== Scroll Reveal with parallax =====
-const revealObserver = new IntersectionObserver((entries) => {
+/* ===== Intersection Observer for reveal ===== */
+const revealExhibits = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
-      revealObserver.unobserve(entry.target);
+      entry.target.classList.add('reveal');
+      revealExhibits.unobserve(entry.target);
     }
   });
-}, { threshold: 0.06, rootMargin: '0px 0px -80px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
-document.querySelectorAll('.gallery-item').forEach(el => revealObserver.observe(el));
-document.querySelectorAll('.skill-card').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.exhibit').forEach(el => revealExhibits.observe(el));
 
-// ===== Subtle parallax on scroll =====
-window.addEventListener('scroll', function() {
-  const scrolled = window.pageYOffset;
-  document.querySelectorAll('.gallery-item.revealed .image-wrapper').forEach((el, i) => {
-    const rect = el.getBoundingClientRect();
-    const center = rect.top + rect.height / 2;
-    const windowCenter = window.innerHeight / 2;
-    const offset = (center - windowCenter) * 0.015;
-    el.querySelector('img').style.transform = `translate3d(0, ${Math.max(-8, Math.min(8, offset))}px, 0) scale(1.03)`;
+const revealArchive = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      revealArchive.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.archive').forEach(el => revealArchive.observe(el));
+
+// Vitrine cards stagger
+const revealVitrines = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      revealVitrines.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.vitrine').forEach((el, i) => {
+  revealVitrines.observe(el);
+  el.style.transitionDelay = (i * 0.12) + 's';
 });
 
-// ===== Loading Bar =====
+/* ===== Loading ===== */
 window.addEventListener('load', function() {
-  const bar = document.getElementById('loadingBar');
-  bar.style.width = '100%';
-  setTimeout(() => { bar.style.opacity = '0'; }, 800);
+  setTimeout(() => {
+    document.getElementById('loadCurtain').classList.add('done');
+  }, 600);
 });
 
-// Fallback
+// Safety fallback
 setTimeout(() => {
-  document.querySelectorAll('.gallery-item:not(.revealed)').forEach(el => el.classList.add('revealed'));
-  document.querySelectorAll('.skill-card:not(.revealed)').forEach(el => el.classList.add('revealed'));
-}, 5000);
+  document.querySelectorAll('.exhibit:not(.reveal)').forEach(el => el.classList.add('reveal'));
+  document.querySelectorAll('.archive:not(.reveal)').forEach(el => el.classList.add('reveal'));
+  document.querySelectorAll('.vitrine:not(.reveal)').forEach(el => el.classList.add('reveal'));
+}, 6000);
 </script>
+
 </body>
 </html>
