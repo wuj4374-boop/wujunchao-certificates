@@ -4,7 +4,6 @@ package-lock.json
 server.js
 start_server.bat
 vercel.json
-qrcode.png
 *.txt
 check_repo.json
 deploy.json

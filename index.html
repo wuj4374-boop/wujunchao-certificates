@@ -676,6 +676,128 @@ body {
   opacity: 0.4;
 }
 
+/* ===== Visit Card (QR) ===== */
+.visit-card {
+  position: relative;
+  z-index: 1;
+  padding: 100px 40px 60px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+}
+
+.visit-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.visit-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,168,106,0.06), transparent);
+}
+
+.visit-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 48px;
+  background: linear-gradient(145deg, rgba(236,232,224,0.015) 0%, rgba(236,232,224,0.005) 100%);
+  border: 0.5px solid rgba(236,232,224,0.04);
+}
+
+.visit-info {
+  flex: 1;
+}
+
+.visit-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.6em;
+  color: var(--text-muted);
+  font-weight: 200;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.visit-info h2 {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 250;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.visit-desc {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 200;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.visit-link {
+  display: inline-block;
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 200;
+  padding: 8px 16px;
+  border: 0.5px solid rgba(196,168,106,0.1);
+  transition: border-color 0.4s ease, background 0.4s ease;
+  word-break: break-all;
+}
+
+.visit-link:hover {
+  border-color: rgba(196,168,106,0.25);
+  background: rgba(196,168,106,0.02);
+}
+
+.visit-qr {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.visit-qr img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border: 0.5px solid rgba(236,232,224,0.06);
+  opacity: 0.85;
+  transition: opacity 0.6s ease;
+}
+
+.visit-qr img:hover {
+  opacity: 1;
+}
+
+.visit-scan {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.45rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  font-weight: 200;
+}
+
+@media (max-width: 600px) {
+  .visit-card { padding: 60px 20px 40px; }
+  .visit-inner {
+    flex-direction: column-reverse;
+    gap: 24px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .visit-qr img { width: 100px; height: 100px; }
+}
+
 /* ===== Footer ===== */
 .gallery-footer {
   position: relative;
@@ -1259,6 +1381,22 @@ body {
   </div>
 </section>
 
+<!-- QR Code & Visit Card -->
+<section class="visit-card">
+  <div class="visit-inner">
+    <div class="visit-info">
+      <span class="visit-label">— 在线展厅 —</span>
+      <h2>扫码访问数字展馆</h2>
+      <p class="visit-desc">手机扫描二维码，随时随地查阅全部材料</p>
+      <a class="visit-link" href="https://wuj4374-boop.github.io/certificates/" target="_blank">https://wuj4374-boop.github.io/certificates/</a>
+    </div>
+    <div class="visit-qr">
+      <img src="qrcode.png" alt="展馆二维码">
+      <span class="visit-scan">扫一扫 · 浏览展厅</span>
+    </div>
+  </div>
+</section>
+
 <footer class="gallery-footer">
   <div class="f-ornament"><span></span><i></i><span></span></div>
   <p>© 2026 吴俊超 · 材料证明数字展馆 &nbsp;|&nbsp; 所有材料真实有效</p>
@@ -1354,6 +1492,18 @@ document.querySelectorAll('.vitrine').forEach((el, i) => {
   el.style.transitionDelay = (i * 0.12) + 's';
 });
 
+// Visit card reveal
+const revealVisit = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      revealVisit.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.visit-card').forEach(el => revealVisit.observe(el));
+
 /* ===== Loading ===== */
 window.addEventListener('load', function() {
   setTimeout(() => {
@@ -1366,6 +1516,7 @@ setTimeout(() => {
   document.querySelectorAll('.exhibit:not(.reveal)').forEach(el => el.classList.add('reveal'));
   document.querySelectorAll('.archive:not(.reveal)').forEach(el => el.classList.add('reveal'));
   document.querySelectorAll('.vitrine:not(.reveal)').forEach(el => el.classList.add('reveal'));
+  document.querySelectorAll('.visit-card:not(.reveal)').forEach(el => el.classList.add('reveal'));
 }, 6000);
 </script>
 
